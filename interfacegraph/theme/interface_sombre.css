@@ -1,0 +1,21 @@
+
+
+QWidget {color: #ccdae1; background-color: #2d2f35;}   /* Pour tous les widgets */
+QMenuBar {border-bottom : 1px solid #0f4405; border-bottom-style: inset;}
+QMenuBar:item {
+    text-align: left;
+    background: #2d2f35;
+    padding-left: 35px;
+    margin: 10px;
+}
+
+
+QLabel {color: #bbc0c3;}
+QTextEdit, QListView {background-color: #343741;}
+#QPushButton {
+    color: #CFCFCF; outline: 0px;
+    border: 1px solid #7597a9;
+    border-top: 1px solid #5e718f;
+    border-left: 1px solid #3f5c6b;
+    border-style: outset;
+}

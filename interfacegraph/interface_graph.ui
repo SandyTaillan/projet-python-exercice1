@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ExercicePython</class>
+ <widget class="QMainWindow" name="ExercicePython">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>998</width>
+    <height>702</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Python exercice</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="2" rowspan="2">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <layout class="QGridLayout" name="gridLayout_contenu">
+      <item row="0" column="0">
+       <widget class="QLabel" name="la_enonce">
+        <property name="text">
+         <string>Enoncé : </string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QTextEdit" name="te_solution"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QTextEdit" name="te_enonce"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="la_solution">
+        <property name="text">
+         <string>Solution :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_btn_cont">
+        <item>
+         <widget class="QPushButton" name="btn_toutvoir">
+          <property name="text">
+           <string>Tout voir</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_5lignes">
+          <property name="text">
+           <string>voir 5 lignes</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_10lignes">
+          <property name="text">
+           <string>Voir 10 lignes</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="0" rowspan="2" colspan="2">
+     <widget class="QGroupBox" name="groupBox_nomfiche">
+      <property name="minimumSize">
+       <size>
+        <width>320</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Exercices</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_niveau">
+         <item>
+          <widget class="QRadioButton" name="rb_deb">
+           <property name="text">
+            <string>Débutant</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rb_int">
+           <property name="text">
+            <string>Intermédiaire</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rb_exp">
+           <property name="text">
+            <string>Expert</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QListWidget" name="liste_fiche"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>998</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>fichier</string>
+    </property>
+    <addaction name="ouv_fichier"/>
+    <addaction name="sauv_fichier"/>
+    <addaction name="fermer_fichier"/>
+   </widget>
+   <widget class="QMenu" name="Creer_fiche">
+    <property name="title">
+     <string>Créer un excercice</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="changer_theme">
+    <property name="title">
+     <string>Changer le thème</string>
+    </property>
+    <addaction name="theme_clair"/>
+    <addaction name="theme_sombre"/>
+   </widget>
+   <widget class="QMenu" name="menuA_propos">
+    <property name="title">
+     <string>Aide</string>
+    </property>
+    <addaction name="aide_logiciel"/>
+    <addaction name="a_propos"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="Creer_fiche"/>
+   <addaction name="changer_theme"/>
+   <addaction name="menuA_propos"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="ouv_fichier">
+   <property name="text">
+    <string>Ouvrir un fichier</string>
+   </property>
+  </action>
+  <action name="sauv_fichier">
+   <property name="text">
+    <string>Sauvegarder un fichier</string>
+   </property>
+  </action>
+  <action name="fermer_fichier">
+   <property name="text">
+    <string>Fermer le fichier</string>
+   </property>
+  </action>
+  <action name="theme_clair">
+   <property name="text">
+    <string>Thème clair</string>
+   </property>
+  </action>
+  <action name="theme_sombre">
+   <property name="text">
+    <string>Thème sombre</string>
+   </property>
+  </action>
+  <action name="aide_logiciel">
+   <property name="text">
+    <string>Aide sur le logiciel</string>
+   </property>
+  </action>
+  <action name="a_propos">
+   <property name="text">
+    <string>A propos</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
