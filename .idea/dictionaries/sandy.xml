@@ -2,6 +2,7 @@
   <dictionary name="sandy">
     <words>
       <w>affichage</w>
+      <w>afficher</w>
       <w>appel</w>
       <w>aussi</w>
       <w>avoir</w>
@@ -19,6 +20,7 @@
       <w>donc</w>
       <w>donnant</w>
       <w>début</w>
+      <w>débutant</w>
       <w>déclaration</w>
       <w>départ</w>
       <w>effectuer</w>
@@ -36,7 +38,9 @@
       <w>indice</w>
       <w>indiquer</w>
       <w>instanciation</w>
+      <w>intermédiaire</w>
       <w>juste</w>
+      <w>leur</w>
       <w>ligne</w>
       <w>liste</w>
       <w>logiciel</w>
@@ -44,6 +48,7 @@
       <w>moins</w>
       <w>même</w>
       <w>nettoie</w>
+      <w>niveau</w>
       <w>nécessaire</w>
       <w>objet</w>
       <w>obligatoire</w>
@@ -60,6 +65,7 @@
       <w>représente</w>
       <w>récupérer</w>
       <w>récupérées</w>
+      <w>selon</w>
       <w>sinon</w>
       <w>système</w>
       <w>sélection</w>

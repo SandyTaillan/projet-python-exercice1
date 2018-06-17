@@ -14,7 +14,6 @@ class Fiche(object):
 
         # déclaration des variables
 
-
         niveauint = '# Niveau : intermédiaire'
         niveauexp = '# Niveau : expert'
 
@@ -47,12 +46,22 @@ class Fiche(object):
         self.listfiches = [os.path.splitext(os.path.split(n)[-1])[0] for n in self.listfiches]      # va nous permettre de récupérer juste le nom du fichier dans le chemin
         return self.listfiches
 
+    def liredosfichselection(self):
+        self.listfiches = glob(self.dosdata + '/*.txt')
+        for i in self.listfiches:
+            with open((i), 'r') as f:
+                self.contenonce = f.read().splitlines()  # on met le contenu dans une liste par ligne
+                if self.contenonce[0] == self.niveaudeb:
+                    self.nomfich = os.path.splitext(os.path.split(i)[-1])[0]
+                    self.listfichselect.append(self.nomfich)
+        return self.listfichselect
+
+
+
     def lirecontfich(self):
         with open(self.chfich, 'r') as f:  # pour ouvrir la fiche
             contenufich = f.read().splitlines()  # on met le contenu dans une liste par ligne
             print(contenufich)
-
-
 
     def lirenoncefich(self):
         """Lire l'énoncé de l'exercice dans le fichier d'exercice."""

@@ -41,8 +41,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.connectionInterface()
         self.affichlistfich()
 
-
-
     def creationinterface(self):
         """Création de l'interface graphique."""
 
@@ -150,9 +148,9 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.btn_5lignes.clicked.connect(self.direbonjour)
         self.btn_10lignes.clicked.connect(self.direaurevoir)
         self.btn_toutvoir.clicked.connect(self.diresalut)
-        self.radbout_debut.clicked.connect(self.affichlistfich)
-        self.radbout_interme.clicked.connect(self.affichlistfich)
-        self.radbout_expert.clicked.connect(self.affichlistfich)
+        self.radbout_debut.clicked.connect(self.affichselectionfich)
+        self.radbout_interme.clicked.connect(self.affichselectionfich)
+        self.radbout_expert.clicked.connect(self.affichselectionfich)
         self.listwid_fichier.itemClicked.connect(self.affichenoncefich)
 
     def retranslate(self):
@@ -192,10 +190,22 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.listfiches = self.liredosfich()
         self.listwid_fichier.addItems(self.listfiches)
 
+    def affichselectionfich(self):
+        """Fonction pour afficher les notes selon leur niveau"""
+        if self.radbout_debut.isChecked():
+            self.niveaudeb = '# Niveau : débutant'
+        if self.radbout_interme.isChecked():
+            self.niveaudeb = '# Niveau : intermédiaire'
+        if self.radbout_expert.isChecked():
+            self.niveaudeb = '# Niveau : expert'
+
+        self.listwid_fichier.clear()     # nettoie la liste de note
+        self.listfichselect = []
+        self.listfichselect= self.liredosfichselection()
+        self.listwid_fichier.addItems(self.listfichselect)
 
     def selectfich(self):
         """Sélection de la note."""
-
         fichselect = self.listwid_fichier.selectedItems()  # type list
         if not fichselect:
             return
@@ -210,14 +220,8 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.te_enonce.setText(self.enoncefich)
 
 
-    def selectaffichfich(self):
 
-        if self.radbout_debut.isChecked():
-            self.selectniveau = "1"
-        if self.radbout_interme.isChecked():
-            self.selectniveau = "2"
-        if self.radbout_expert.isChecked():
-            self.selectniveau = "3"
+
 
 app = QtGui.QApplication([])        # création de l'application
 
