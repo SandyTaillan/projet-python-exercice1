@@ -4,20 +4,19 @@
 # todo : d'abord le faire en python 2.7 puis en 3
 # todo : Faire en PySide puis en PySide 2
 # todo : Je devrais donc avoir au moins 2 ou 3 versions de mon script
+# todo : rajouter une barre de progression avec la posssibilité d'indiquer qu'un exercice est réussi.
+# todo : faire en sorte que des fenêtres pop pup s'ouvent pour indiquer l'énoncé et le contenu à la création de la fiche.
+# todo : Faire en sorte que le texte dans les fiches soit en utf8.
 #
 # En python 2.7 PySide 1
 
-# on va toucher aux fichiers de système d'exploitation,
-#               => On va donc importer le module os
-import os
-from glob import glob
-
 # importation des modules nécessaire à la création de mon application
+import os
 from PySide import QtGui, QtCore
+from pythonexercice_calcul import Fiche
 
 
-# on va créer une classe qui va hériter de QWidget
-class FenetrePrincipale(QtGui.QMainWindow):
+class FenetrePrincipale(QtGui.QMainWindow, Fiche):
     """Cette classe représente la fenêtre principale de mon application."""
 
     def __init__(self):
@@ -26,9 +25,23 @@ class FenetrePrincipale(QtGui.QMainWindow):
         # On initialise la fenêtre en lui donnant un titre
         self.setWindowTitle('Mon Logiciel')
 
+        # déclaration des variables
+        chbase = os.path.dirname(__file__)
+        self.nomfich = "ficheinitiale"
+        self.dosdata = os.path.join(chbase, 'data')
+        self.chfich = os.path.join(self.dosdata, '/' + self.nomfich + '.txt')
+        self.niveaudeb = '# Niveau : débutant'
+        self.textenonce = '# Enonce'
+        self.textsoluce = '# Solution'
+
         # Appel de la fonction pour dessiner l'interface
 
+        self.dossierdata()
         self.creationinterface()
+        self.connectionInterface()
+        self.affichlistfich()
+
+
 
     def creationinterface(self):
         """Création de l'interface graphique."""
@@ -132,10 +145,15 @@ class FenetrePrincipale(QtGui.QMainWindow):
 
         self.retranslate()
 
-        # Pour connecter l'interface au code véritable
+    def connectionInterface(self):
+        """ Pour connecter l'interface au code véritable."""
         self.btn_5lignes.clicked.connect(self.direbonjour)
         self.btn_10lignes.clicked.connect(self.direaurevoir)
         self.btn_toutvoir.clicked.connect(self.diresalut)
+        self.radbout_debut.clicked.connect(self.affichlistfich)
+        self.radbout_interme.clicked.connect(self.affichlistfich)
+        self.radbout_expert.clicked.connect(self.affichlistfich)
+        self.listwid_fichier.itemClicked.connect(self.affichenoncefich)
 
     def retranslate(self):
         self.radbout_debut.setText(QtGui.QApplication.translate("self", "Niv. Débutant", None, QtGui.QApplication.UnicodeUTF8))
@@ -168,10 +186,38 @@ class FenetrePrincipale(QtGui.QMainWindow):
     def diresalut(self):
         print('salut')
 
+    def affichlistfich(self):
+        """Fonction permettant d'afficher les notes récupérées par la fonction liredosfich du fichiercalcul."""
+        self.listwid_fichier.clear()                       # nettoie la liste de note
+        self.listfiches = self.liredosfich()
+        self.listwid_fichier.addItems(self.listfiches)
 
 
+    def selectfich(self):
+        """Sélection de la note."""
+
+        fichselect = self.listwid_fichier.selectedItems()  # type list
+        if not fichselect:
+            return
+        self.nomfich = fichselect[-1].text()                # permet de récupérer juste le nom sélectionné
+        self.chfich = os.path.join(self.dosdata, '/', self.nomfich + '.txt')
+        return self.nomfich, self.chfich
+
+    def affichenoncefich(self):
+        """Affichage de l'énoncé de la note."""
+        self.nomfich, self.chfich = self.selectfich()
+        self.enoncefich = self.lirenoncefich()
+        self.te_enonce.setText(self.enoncefich)
 
 
+    def selectaffichfich(self):
+
+        if self.radbout_debut.isChecked():
+            self.selectniveau = "1"
+        if self.radbout_interme.isChecked():
+            self.selectniveau = "2"
+        if self.radbout_expert.isChecked():
+            self.selectniveau = "3"
 
 app = QtGui.QApplication([])        # création de l'application
 
