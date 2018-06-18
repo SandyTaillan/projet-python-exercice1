@@ -67,7 +67,6 @@ class Fiche(object):
         """Lire l'énoncé de l'exercice dans le fichier d'exercice."""
 
         with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
-
             self.contenonce = f.read().splitlines()  # on met le contenu dans une liste par ligne
             index1 = self.contenonce.index(self.textenonce)  # indice du début de l'énoncé dans la liste
             index2 = self.contenonce.index(self.textsoluce)  # indice de fin de l'énoncé dans la liste
@@ -76,3 +75,37 @@ class Fiche(object):
             for line in texte:
                 self.enoncefich = self.enoncefich + str(line) + '\n'
             return self.enoncefich
+
+    def lirecont5lignes(self):
+        """Permet de récupérer 5 lignes du contenu de la note"""
+
+        with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
+            cont5 = f.read().splitlines()                  # on met le contenu dans une liste par ligne                                       # on met le contenu dans une variable
+            index1 = cont5.index('# Solution')               # indice du début du code dans la liste
+            index2 = index1 + 5
+            texte = (cont5[index1: index2])                # le texte est compris entre énoncé et code en liste
+            contenu5 = ""                                    # transformation de la liste en string
+            for line in texte:
+                contenu5 = contenu5 + str(line) + '\n'
+        return contenu5                                     # on retourne le contenu de la variable
+
+    def lirecont10lignes(self):
+        """Permet de récupérer  10 lignes du contenu de la note"""
+
+        with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
+            cont10 = f.read().splitlines()  # on met le contenu dans une liste par ligne                                       # on met le contenu dans une variable
+            index1 = cont10.index('# Solution')  # indice du début du code dans la liste
+            index2 = index1 + 10
+            texte = (cont10[index1: index2])  # le texte est compris entre énoncé et code en liste
+            contenu10 = ""  # transformation de la liste en string
+            for line in texte:
+                contenu10 = contenu10 + str(line) + '\n'
+        return contenu10  # on retourne le contenu de la variable
+
+    def lireconttout(self):
+        """Permet de récupérer  tout le contenu de la note"""
+
+        with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
+            contenuNote = f.read()                           # on met le contenu dans une variable
+        return contenuNote                                   # on retourne le contenu de la variable
+

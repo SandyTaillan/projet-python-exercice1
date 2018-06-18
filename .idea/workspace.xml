@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b0d396d-acb7-4834-9a4e-8e7d8af3d413" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/sandy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/sandy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ficheinitiale.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/ficheinitiale.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pythonexercice.py" beforeDir="false" afterPath="$PROJECT_DIR$/pythonexercice.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pythonexercice_calcul.py" beforeDir="false" afterPath="$PROJECT_DIR$/pythonexercice_calcul.py" afterDir="false" />
     </list>
@@ -15,14 +13,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5377532">
+    <splitter split-orientation="horizontal" split-proportion="0.57213014">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="pythonexercice.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pythonexercice.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="710">
-                  <caret line="203" column="56" selection-start-line="203" selection-start-column="56" selection-end-line="203" selection-end-column="56" />
+                <state relative-caret-position="825">
+                  <caret line="176" column="24" selection-start-line="176" selection-start-column="24" selection-end-line="176" selection-end-column="24" />
                   <folding>
                     <element signature="e#1566#5880#0" />
                     <element signature="e#6459#8891#0" />
@@ -38,8 +36,8 @@
           <file leaf-file-name="pythonexercice_calcul.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pythonexercice_calcul.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="346">
-                  <caret line="55" column="60" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
+                <state relative-caret-position="690">
+                  <caret line="108" selection-start-line="108" selection-end-line="108" />
                   <folding>
                     <element signature="e#153#162#0" expanded="true" />
                   </folding>
@@ -66,14 +64,14 @@
       <list>
         <option value="$PROJECT_DIR$/interfacegraph/interface_graph1.py" />
         <option value="$PROJECT_DIR$/interfacegraph/interface.py" />
-        <option value="$PROJECT_DIR$/pythonexercice_calcul.py" />
         <option value="$PROJECT_DIR$/pythonexercice.py" />
+        <option value="$PROJECT_DIR$/pythonexercice_calcul.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1889" />
-    <option name="y" value="-1094" />
+    <option name="x" value="1951" />
+    <option name="y" value="-14" />
     <option name="width" value="1890" />
     <option name="height" value="1095" />
   </component>
@@ -319,23 +317,23 @@
     <entry file="file://$PROJECT_DIR$/data/ficheinitiale.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pythonexercice_calcul.py">
+    <entry file="file://$PROJECT_DIR$/pythonexercice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="55" column="60" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
+        <state relative-caret-position="825">
+          <caret line="176" column="24" selection-start-line="176" selection-start-column="24" selection-end-line="176" selection-end-column="24" />
           <folding>
-            <element signature="e#153#162#0" expanded="true" />
+            <element signature="e#1566#5880#0" />
+            <element signature="e#6459#8891#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pythonexercice.py">
+    <entry file="file://$PROJECT_DIR$/pythonexercice_calcul.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="203" column="56" selection-start-line="203" selection-start-column="56" selection-end-line="203" selection-end-column="56" />
+        <state relative-caret-position="690">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
           <folding>
-            <element signature="e#1566#5880#0" />
-            <element signature="e#6459#8891#0" />
+            <element signature="e#153#162#0" expanded="true" />
           </folding>
         </state>
       </provider>

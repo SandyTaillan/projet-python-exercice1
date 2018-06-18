@@ -145,9 +145,9 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
     def connectionInterface(self):
         """ Pour connecter l'interface au code véritable."""
-        self.btn_5lignes.clicked.connect(self.direbonjour)
-        self.btn_10lignes.clicked.connect(self.direaurevoir)
-        self.btn_toutvoir.clicked.connect(self.diresalut)
+        self.btn_5lignes.clicked.connect(self.affich5lignes)
+        self.btn_10lignes.clicked.connect(self.affich10lignes)
+        self.btn_toutvoir.clicked.connect(self.affichConttotal)
         self.radbout_debut.clicked.connect(self.affichselectionfich)
         self.radbout_interme.clicked.connect(self.affichselectionfich)
         self.radbout_expert.clicked.connect(self.affichselectionfich)
@@ -174,16 +174,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.actionAide_log.setText(QtGui.QApplication.translate("self", "Aide sur le logiciel", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Apropos.setText(QtGui.QApplication.translate("self", "À Propos", None, QtGui.QApplication.UnicodeUTF8))
 
-    # Création du slot
-    def direbonjour(self):
-        print('bonjour')
-
-    def direaurevoir(self):
-        print('Au revoir')
-
-    def diresalut(self):
-        print('salut')
-
+    # Création des slots
     def affichlistfich(self):
         """Fonction permettant d'afficher les notes récupérées par la fonction liredosfich du fichiercalcul."""
         self.listwid_fichier.clear()                       # nettoie la liste de note
@@ -220,7 +211,26 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.te_enonce.setText(self.enoncefich)
 
 
+    def affich5lignes(self):
+        """Affichage de 5 lignes du contenu de la note"""
 
+        self.nomfich, self.chfich = self.selectfich()
+        contenu5 = self.lirecont5lignes()
+        self.te_contenu.setText(contenu5)                 # le texte est placé dans l'interface
+
+    def affich10lignes(self):
+        """Affichage de 10 lignes du contenu de la note"""
+
+        self.nomfich, self.chfich = self.selectfich()
+        contenu10 = self.lirecont10lignes()
+        self.te_contenu.setText(contenu10)
+
+    def affichConttotal(self):
+        """Affichage du contenu complet de la note"""
+
+        self.nomfich, self.chfich = self.selectfich()
+        contenuNote = self.lireconttout()
+        self.te_contenu.setText(contenuNote)  # le texte est placé dans l'interface
 
 
 app = QtGui.QApplication([])        # création de l'application
