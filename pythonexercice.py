@@ -27,6 +27,10 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         # On initialise la fenêtre en lui donnant un titre
         self.setWindowTitle('Mon Logiciel')
 
+        self.fenetrecreation = QtGui.QDialog()
+        self.fenetrecreation.setWindowModality(QtCore.Qt.ApplicationModal)
+
+
         # déclaration des variables
         chbase = os.path.dirname(__file__)
         self.nomfich = "ficheinitiale"
@@ -249,8 +253,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
     # Création d'une fiche
     def affichcreafich(self):
 
-        self.fenetrecreation = QtGui.QDialog()
-        self.fenetrecreation.setWindowModality(QtCore.Qt.ApplicationModal)
         self.fenetrecreation.show()
 
         self.fenetrecreation.resize(605, 555)
@@ -281,21 +283,28 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         self.retranslateUi()
 
+        f = QtCore.QFile("./interface/theme/interface_sombre.css")
+        f.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
+        ts = QtCore.QTextStream(f)
+        stylesheet = ts.readAll()
+        self.fenetrecreation.setStyleSheet(stylesheet)
+
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.fenetrecreation.accept)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), self.fenetrecreation.reject)
 
+        QtCore.QMetaObject.connectSlotsByName(self.fenetrecreation)
+
+
+    def accept(fenetrecreation):
+        print('cela fonctionne')
+
         #self.nomfich, ok = QtGui.QInputDialog.setgetText(self, 'Créer une note', 'Entrez le nom de la note : ')   # demander le nom de la note graphiquement
 
-        #if not ok:                                  # si on ne clique pas sur ok
-            #return
-        #self.contenufich, ok = QtGui.QInputDialog.getText(self, "Ecrire l'énoncé", "Donnez l'énoncé : ")
-        #if not ok:
-            #return
 
     def retranslateUi(self):
-        self.setWindowTitle(QtGui.QApplication.translate("self.fenetrecreation", "Création d\'une fiche", None, QtGui.QApplication.UnicodeUTF8))
+        self.setWindowTitle(QtGui.QApplication.translate("self.fenetrecreation", "Création d'une fiche", None, QtGui.QApplication.UnicodeUTF8))
         self.la_nomfich2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez le nom de la fiche :", None, QtGui.QApplication.UnicodeUTF8))
-        self.la_enonce2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez l\'énoncé de la fiche : ", None, QtGui.QApplication.UnicodeUTF8))
+        self.la_enonce2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez l'énoncé de la fiche : ", None, QtGui.QApplication.UnicodeUTF8))
         self.la_soluce2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez la solution de la fiche :", None, QtGui.QApplication.UnicodeUTF8))
 
 
@@ -309,6 +318,8 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         ts = QtCore.QTextStream(f)
         stylesheet = ts.readAll()
         self.setStyleSheet(stylesheet)
+
+
 
     def themeclair(self):
         """Affichage d'un thème clair pour l'interface"""

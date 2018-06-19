@@ -1,2 +1,10 @@
 
 *.ipynb
+
+\.idea/dictionaries/sandy\.xml
+
+\.idea/misc\.xml
+
+\.idea/projet-python-exercice1\.iml
+
+\.idea/workspace\.xml
