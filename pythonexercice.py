@@ -5,8 +5,10 @@
 # todo : Faire en PySide puis en PySide 2
 # todo : Je devrais donc avoir au moins 2 ou 3 versions de mon script
 # todo : rajouter une barre de progression avec la posssibilité d'indiquer qu'un exercice est réussi.
-# todo : faire en sorte que des fenêtres pop pup s'ouvent pour indiquer l'énoncé et le contenu à la création de la fiche.
+# todo : faire en sorte que des fenêtres pop pup s'ouvent pour l'énoncé et le contenu à la création de la fiche.
 # todo : Faire en sorte que le texte dans les fiches soit en utf8.
+# todo :  Tout le contenu du fichier s'affiche au lieu de seulement la solution ;
+# todo :  Je ne veux pas que #Enonce et #solution s'affichent.
 #
 # En python 2.7 PySide 1
 
@@ -38,7 +40,8 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         self.dossierdata()
         self.creationinterface()
-        self.connectionInterface()
+        self.connectioninterface()
+        self.themesombre()
         self.affichlistfich()
 
     def creationinterface(self):
@@ -101,9 +104,12 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.actionTheme_sombre = QtGui.QAction(self)
         self.actionAide_log = QtGui.QAction(self)
         self.action_Apropos = QtGui.QAction(self)
+        self.actionCreer_exercice = QtGui.QAction(self)
+
         self.menuFichier.addAction(self.actionOuv_fich)
         self.menuFichier.addAction(self.actionSauv_fich)
         self.menuFichier.addAction(self.actionFerm_fich)
+        self.menuCreer_exer.addAction(self.actionCreer_exercice)
         self.menuChang_theme.addAction(self.actionTheme_clair)
         self.menuChang_theme.addAction(self.actionTheme_sombre)
         self.menuAide.addAction(self.actionAide_log)
@@ -143,7 +149,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         self.retranslate()
 
-    def connectionInterface(self):
+    def connectioninterface(self):
         """ Pour connecter l'interface au code véritable."""
         self.btn_5lignes.clicked.connect(self.affich5lignes)
         self.btn_10lignes.clicked.connect(self.affich10lignes)
@@ -152,8 +158,13 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.radbout_interme.clicked.connect(self.affichselectionfich)
         self.radbout_expert.clicked.connect(self.affichselectionfich)
         self.listwid_fichier.itemClicked.connect(self.affichenoncefich)
+        self.actionTheme_clair.triggered.connect(self.themeclair)
+        self.actionTheme_sombre.triggered.connect(self.themesombre)
+        self.actionCreer_exercice.triggered.connect(self.affichcreafich)
 
     def retranslate(self):
+        """Pour que le texte s'affiche en utf8."""
+
         self.radbout_debut.setText(QtGui.QApplication.translate("self", "Niv. Débutant", None, QtGui.QApplication.UnicodeUTF8))
         self.radbout_interme.setText(QtGui.QApplication.translate("self", "Niv. intermédiaire", None, QtGui.QApplication.UnicodeUTF8))
         self.radbout_expert.setText(QtGui.QApplication.translate("self", "Niv. expert", None, QtGui.QApplication.UnicodeUTF8))
@@ -163,12 +174,13 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.btn_10lignes.setText(QtGui.QApplication.translate("self", "Voir 10 Lignes", None, QtGui.QApplication.UnicodeUTF8))
         self.btn_toutvoir.setText(QtGui.QApplication.translate("self", "Tout voir", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFichier.setTitle(QtGui.QApplication.translate("self", "Fichier", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuCreer_exer.setTitle(QtGui.QApplication.translate("self", "Créer un exercice", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuCreer_exer.setTitle(QtGui.QApplication.translate("self", "Fiche", None, QtGui.QApplication.UnicodeUTF8))
         self.menuChang_theme.setTitle(QtGui.QApplication.translate("self", "Changer le thème", None, QtGui.QApplication.UnicodeUTF8))
         self.menuAide.setTitle(QtGui.QApplication.translate("self", "Aide", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOuv_fich.setText(QtGui.QApplication.translate("self", "Ouvrir un fichier", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSauv_fich.setText(QtGui.QApplication.translate("self", "Sauvegarder un fichier", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFerm_fich.setText(QtGui.QApplication.translate("self", "Fermer le fichier", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionCreer_exercice.setText(QtGui.QApplication.translate("self", "Créer un exercice", None, QtGui.QApplication.UnicodeUTF8))
         self.actionTheme_clair.setText(QtGui.QApplication.translate("self", "Thème clair", None, QtGui.QApplication.UnicodeUTF8))
         self.actionTheme_sombre.setText(QtGui.QApplication.translate("self", "Thème sombre", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAide_log.setText(QtGui.QApplication.translate("self", "Aide sur le logiciel", None, QtGui.QApplication.UnicodeUTF8))
@@ -231,6 +243,86 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.nomfich, self.chfich = self.selectfich()
         contenuNote = self.lireconttout()
         self.te_contenu.setText(contenuNote)  # le texte est placé dans l'interface
+
+
+    # la barre de menu
+    # Création d'une fiche
+    def affichcreafich(self):
+
+        self.fenetrecreation = QtGui.QDialog()
+        self.fenetrecreation.setWindowModality(QtCore.Qt.ApplicationModal)
+        self.fenetrecreation.show()
+
+        self.fenetrecreation.resize(605, 555)
+
+        self.verticalLayout = QtGui.QVBoxLayout(self.fenetrecreation)
+        self.la_nomfich2 = QtGui.QLabel(self.fenetrecreation)
+        self.le_nomfich2 = QtGui.QLineEdit(self.fenetrecreation)
+        self.la_enonce2 = QtGui.QLabel(self.fenetrecreation)
+        self.le_enonce2 = QtGui.QTextEdit(self.fenetrecreation)
+        self.la_soluce2 = QtGui.QLabel(self.fenetrecreation)
+        self.le_soluce2 = QtGui.QTextEdit(self.fenetrecreation)
+        self.buttonBox = QtGui.QDialogButtonBox(self.fenetrecreation)
+
+        self.la_nomfich2.setAlignment(QtCore.Qt.AlignCenter)
+        self.la_enonce2.setAlignment(QtCore.Qt.AlignCenter)
+        self.la_soluce2.setAlignment(QtCore.Qt.AlignCenter)
+        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setCenterButtons(True)
+
+        self.verticalLayout.addWidget(self.la_nomfich2)
+        self.verticalLayout.addWidget(self.le_nomfich2)
+        self.verticalLayout.addWidget(self.la_enonce2)
+        self.verticalLayout.addWidget(self.le_enonce2)
+        self.verticalLayout.addWidget(self.la_soluce2)
+        self.verticalLayout.addWidget(self.le_soluce2)
+        self.verticalLayout.addWidget(self.buttonBox)
+
+        self.retranslateUi()
+
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.fenetrecreation.accept)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), self.fenetrecreation.reject)
+
+        #self.nomfich, ok = QtGui.QInputDialog.setgetText(self, 'Créer une note', 'Entrez le nom de la note : ')   # demander le nom de la note graphiquement
+
+        #if not ok:                                  # si on ne clique pas sur ok
+            #return
+        #self.contenufich, ok = QtGui.QInputDialog.getText(self, "Ecrire l'énoncé", "Donnez l'énoncé : ")
+        #if not ok:
+            #return
+
+    def retranslateUi(self):
+        self.setWindowTitle(QtGui.QApplication.translate("self.fenetrecreation", "Création d\'une fiche", None, QtGui.QApplication.UnicodeUTF8))
+        self.la_nomfich2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez le nom de la fiche :", None, QtGui.QApplication.UnicodeUTF8))
+        self.la_enonce2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez l\'énoncé de la fiche : ", None, QtGui.QApplication.UnicodeUTF8))
+        self.la_soluce2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez la solution de la fiche :", None, QtGui.QApplication.UnicodeUTF8))
+
+
+    # gestion des thèmes
+
+    def themesombre(self):
+        """Affichage d'un thème sombre pour l'interface ( thème par défaut)."""
+
+        f = QtCore.QFile("./interface/theme/interface_sombre.css")
+        f.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
+        ts = QtCore.QTextStream(f)
+        stylesheet = ts.readAll()
+        self.setStyleSheet(stylesheet)
+
+    def themeclair(self):
+        """Affichage d'un thème clair pour l'interface"""
+
+        f = QtCore.QFile("./interface/theme/interface_claire.css")
+        f.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
+        ts = QtCore.QTextStream(f)
+        stylesheet = ts.readAll()
+        self.setStyleSheet(stylesheet)
+
+
+
+
+
 
 
 app = QtGui.QApplication([])        # création de l'application

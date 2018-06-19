@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/sandy/Documents/informatique/mes-scripts/fenetre_avec_menu/interface/interface_graph2.ui'
+# Form implementation generated from reading ui file '/home/sandy/Documents/informatique/mes-scripts/projet-python-exercice1/interface/interface_graph2.ui'
 #
-# Created: Fri Jun 15 07:02:54 2018
+# Created: Tue Jun 19 07:31:51 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

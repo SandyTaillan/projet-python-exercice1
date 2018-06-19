@@ -18,7 +18,7 @@ class Fiche(object):
         niveauexp = '# Niveau : expert'
 
         # variable de test
-        interniveau = 'Niveau : débutant'
+        interniveau = '# Niveau : débutant'
 
     def dossierdata(self):
         """Vérification si le dossier data existe et je le crée s'il n'existe pas
