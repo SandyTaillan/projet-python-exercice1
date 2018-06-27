@@ -5,7 +5,6 @@
 # todo : Faire en PySide puis en PySide 2
 # todo : Je devrais donc avoir au moins 2 ou 3 versions de mon script
 # todo : rajouter une barre de progression avec la posssibilité d'indiquer qu'un exercice est réussi.
-# todo : faire en sorte que des fenêtres pop pup s'ouvent pour l'énoncé et le contenu à la création de la fiche.
 # todo : Faire en sorte que le texte dans les fiches soit en utf8.
 # todo :  Tout le contenu du fichier s'affiche au lieu de seulement la solution ;
 # todo :  Je ne veux pas que #Enonce et #solution s'affichent.
@@ -32,12 +31,12 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         # déclaration des variables
         chbase = os.path.dirname(__file__)
-        self.nomfich = "ficheinitiale"
+        self.nomfich = ""
         self.dosdata = os.path.join(chbase, 'data')
         self.chfich = os.path.join(self.dosdata, '/' + self.nomfich + '.txt')
         self.niveaudeb = '# Niveau : débutant'
-        self.textenonce = '# Enonce'
-        self.textsoluce = '# Solution'
+        self.textenonce = '# Enoncé :'
+        self.textsoluce = '# Solution : '
 
         # Appel de la fonction pour dessiner l'interface
 
@@ -306,16 +305,19 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.nomfich = self.le_nomfich2.text()
         self.enoncefich = self.le_enonce2.toPlainText().encode('UTF-8')
         self.contenufich = self.le_soluce2.toPlainText().encode('UTF-8')
-        if self.radbout_debut.isChecked():
+        if self.radbout_debut1.isChecked():
             self.niveaudeb = '# Niveau : débutant'
-        if self.radbout_interme.isChecked():
+        if self.radbout_interme1.isChecked():
             self.niveaudeb = '# Niveau : intermédiaire'
-        if self.radbout_expert.isChecked():
+        if self.radbout_expert1.isChecked():
             self.niveaudeb = '# Niveau : expert'
 
         self.contenu = self.niveaudeb + '\n' + self.textenonce + '\n' + self.enoncefich + '\n' + self.textsoluce + '\n' + self.contenufich
 
         Fiche.creationfich(self)
+        self.le_nomfich2.clear()
+        self.le_enonce2.clear()
+        self.le_soluce2.clear()
         self.affichlistfich()
 
     def retranslateUi(self):

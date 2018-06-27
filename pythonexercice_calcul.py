@@ -38,7 +38,7 @@ class Fiche(object):
             self.contenonce = f.read().splitlines()  # on met le contenu dans une liste par ligne
             index1 = self.contenonce.index(self.textenonce)  # indice du début de l'énoncé dans la liste
             index2 = self.contenonce.index(self.textsoluce)  # indice de fin de l'énoncé dans la liste
-            texte = (self.contenonce[index1: index2])  # le texte est compris entre énoncé et code en liste
+            texte = (self.contenonce[(index1 +1): index2])  # le texte est compris entre énoncé et code en liste
             self.enoncefich = ""  # transformation de la liste en string
             for line in texte:
                 self.enoncefich = self.enoncefich + str(line) + '\n'
@@ -49,7 +49,7 @@ class Fiche(object):
 
         with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
             cont5 = f.read().splitlines()                  # on met le contenu dans une liste par ligne                                       # on met le contenu dans une variable
-            index1 = cont5.index('# Solution')               # indice du début du code dans la liste
+            index1 = cont5.index(self.textsoluce)               # indice du début du code dans la liste
             index2 = index1 + 5
             texte = (cont5[index1: index2])                # le texte est compris entre énoncé et code en liste
             contenu5 = ""                                    # transformation de la liste en string
@@ -62,7 +62,7 @@ class Fiche(object):
 
         with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
             cont10 = f.read().splitlines()  # on met le contenu dans une liste par ligne                                       # on met le contenu dans une variable
-            index1 = cont10.index('# Solution')  # indice du début du code dans la liste
+            index1 = cont10.index(self.textsoluce)  # indice du début du code dans la liste
             index2 = index1 + 10
             texte = (cont10[index1: index2])  # le texte est compris entre énoncé et code en liste
             contenu10 = ""  # transformation de la liste en string
