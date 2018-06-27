@@ -16,34 +16,14 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="la_nomfich2">
-     <property name="text">
-      <string>Entrez le nom de la fiche :</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="2">
     <widget class="QLineEdit" name="le_nomfich2"/>
    </item>
-   <item>
-    <widget class="QLabel" name="la_enonce2">
-     <property name="text">
-      <string>Entrez l'énoncé de la fiche : </string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
+   <item row="10" column="0" colspan="4">
+    <widget class="QTextEdit" name="le_soluce2"/>
    </item>
-   <item>
-    <widget class="QTextEdit" name="le_enonce2"/>
-   </item>
-   <item>
+   <item row="8" column="2">
     <widget class="QLabel" name="la_soluce2">
      <property name="text">
       <string>Entrez la solution de la fiche :</string>
@@ -53,10 +33,51 @@
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QTextEdit" name="le_soluce2"/>
+   <item row="7" column="0" colspan="4">
+    <widget class="QTextEdit" name="le_enonce2"/>
    </item>
-   <item>
+   <item row="5" column="2">
+    <widget class="QLabel" name="la_enonce2">
+     <property name="text">
+      <string>Entrez l'énoncé de la fiche : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QRadioButton" name="radbout_debut1">
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="la_nomfich2">
+     <property name="text">
+      <string>Entrez le nom de la fiche :</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QRadioButton" name="radbout_interme1">
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <widget class="QRadioButton" name="radbout_expert1">
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

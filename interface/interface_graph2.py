@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/sandy/Documents/informatique/mes-scripts/projet-python-exercice1/interface/interface_graph2.ui'
 #
-# Created: Tue Jun 19 07:31:51 2018
+# Created: Sun Jun 24 14:52:23 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

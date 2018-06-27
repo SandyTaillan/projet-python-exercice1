@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -
+# -*- coding: utf-8 -*-
+
 
 # todo : d'abord le faire en python 2.7 puis en 3
 # todo : Faire en PySide puis en PySide 2
@@ -30,7 +30,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.fenetrecreation = QtGui.QDialog()
         self.fenetrecreation.setWindowModality(QtCore.Qt.ApplicationModal)
 
-
         # déclaration des variables
         chbase = os.path.dirname(__file__)
         self.nomfich = "ficheinitiale"
@@ -42,7 +41,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         # Appel de la fonction pour dessiner l'interface
 
-        self.dossierdata()
         self.creationinterface()
         self.connectioninterface()
         self.themesombre()
@@ -226,7 +224,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.enoncefich = self.lirenoncefich()
         self.te_enonce.setText(self.enoncefich)
 
-
     def affich5lignes(self):
         """Affichage de 5 lignes du contenu de la note"""
 
@@ -245,21 +242,21 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         """Affichage du contenu complet de la note"""
 
         self.nomfich, self.chfich = self.selectfich()
-        contenuNote = self.lireconttout()
-        self.te_contenu.setText(contenuNote)  # le texte est placé dans l'interface
+        contenufich = self.lireconttout()
+        self.te_contenu.setText(contenufich)  # le texte est placé dans l'interface
 
-
-    # la barre de menu
-    # Création d'une fiche
     def affichcreafich(self):
 
         self.fenetrecreation.show()
 
         self.fenetrecreation.resize(605, 555)
 
-        self.verticalLayout = QtGui.QVBoxLayout(self.fenetrecreation)
+        self.gridLayout = QtGui.QGridLayout(self.fenetrecreation)
         self.la_nomfich2 = QtGui.QLabel(self.fenetrecreation)
         self.le_nomfich2 = QtGui.QLineEdit(self.fenetrecreation)
+        self.radbout_debut1 = QtGui.QRadioButton(self.fenetrecreation)
+        self.radbout_interme1 = QtGui.QRadioButton(self.fenetrecreation)
+        self.radbout_expert1 = QtGui.QRadioButton(self.fenetrecreation)
         self.la_enonce2 = QtGui.QLabel(self.fenetrecreation)
         self.le_enonce2 = QtGui.QTextEdit(self.fenetrecreation)
         self.la_soluce2 = QtGui.QLabel(self.fenetrecreation)
@@ -273,13 +270,21 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setCenterButtons(True)
 
-        self.verticalLayout.addWidget(self.la_nomfich2)
-        self.verticalLayout.addWidget(self.le_nomfich2)
-        self.verticalLayout.addWidget(self.la_enonce2)
-        self.verticalLayout.addWidget(self.le_enonce2)
-        self.verticalLayout.addWidget(self.la_soluce2)
-        self.verticalLayout.addWidget(self.le_soluce2)
-        self.verticalLayout.addWidget(self.buttonBox)
+
+        self.gridLayout.addWidget(self.la_nomfich2, 2, 2, 1, 1)
+        self.gridLayout.addWidget(self.le_nomfich2, 3, 2, 1, 1)
+        self.gridLayout.addWidget(self.radbout_debut1, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.radbout_interme1, 4, 2, 1, 1)
+        self.gridLayout.addWidget(self.radbout_expert1, 4, 3, 1, 1)
+        self.gridLayout.addWidget(self.la_enonce2, 5, 2, 1, 1)
+        self.gridLayout.addWidget(self.le_enonce2, 7, 0, 1, 4)
+        self.gridLayout.addWidget(self.la_soluce2, 8, 2, 1, 1)
+        self.gridLayout.addWidget(self.le_soluce2, 10, 0, 1, 4)
+        self.gridLayout.addWidget(self.buttonBox, 11, 2, 1, 1)
+
+        self.radbout_debut1.setMinimumSize(190, 20)
+        self.radbout_interme1.setMinimumSize(190,20)
+        self.radbout_expert1.setMinimumSize(150, 20)
 
         self.retranslateUi()
 
@@ -291,21 +296,36 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.fenetrecreation.accept)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), self.fenetrecreation.reject)
+        self.buttonBox.clicked.connect(self.donneescreatfich)
 
         QtCore.QMetaObject.connectSlotsByName(self.fenetrecreation)
 
+    def donneescreatfich(self):
+        """Fonction permettant de récupérer les données de création d'une fiche d'exercice."""
 
-    def accept(fenetrecreation):
-        print('cela fonctionne')
+        self.nomfich = self.le_nomfich2.text()
+        self.enoncefich = self.le_enonce2.toPlainText().encode('UTF-8')
+        self.contenufich = self.le_soluce2.toPlainText().encode('UTF-8')
+        if self.radbout_debut.isChecked():
+            self.niveaudeb = '# Niveau : débutant'
+        if self.radbout_interme.isChecked():
+            self.niveaudeb = '# Niveau : intermédiaire'
+        if self.radbout_expert.isChecked():
+            self.niveaudeb = '# Niveau : expert'
 
-        #self.nomfich, ok = QtGui.QInputDialog.setgetText(self, 'Créer une note', 'Entrez le nom de la note : ')   # demander le nom de la note graphiquement
+        self.contenu = self.niveaudeb + '\n' + self.textenonce + '\n' + self.enoncefich + '\n' + self.textsoluce + '\n' + self.contenufich
 
+        Fiche.creationfich(self)
+        self.affichlistfich()
 
     def retranslateUi(self):
         self.setWindowTitle(QtGui.QApplication.translate("self.fenetrecreation", "Création d'une fiche", None, QtGui.QApplication.UnicodeUTF8))
         self.la_nomfich2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez le nom de la fiche :", None, QtGui.QApplication.UnicodeUTF8))
         self.la_enonce2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez l'énoncé de la fiche : ", None, QtGui.QApplication.UnicodeUTF8))
         self.la_soluce2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez la solution de la fiche :", None, QtGui.QApplication.UnicodeUTF8))
+        self.radbout_debut1.setText(QtGui.QApplication.translate("self.fenetrecreation", "Niv. débutant", None, QtGui.QApplication.UnicodeUTF8))
+        self.radbout_interme1.setText(QtGui.QApplication.translate("self.fenetrecreation", "Niv. intermédiaire", None, QtGui.QApplication.UnicodeUTF8))
+        self.radbout_expert1.setText(QtGui.QApplication.translate("self.fenetrecreation", "Niv. expert", None, QtGui.QApplication.UnicodeUTF8))
 
 
     # gestion des thèmes
@@ -319,8 +339,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         stylesheet = ts.readAll()
         self.setStyleSheet(stylesheet)
 
-
-
     def themeclair(self):
         """Affichage d'un thème clair pour l'interface"""
 
@@ -331,14 +349,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.setStyleSheet(stylesheet)
 
 
-
-
-
-
-
 app = QtGui.QApplication([])        # création de l'application
-
 fenetre = FenetrePrincipale()       # instanciation de la fenêtre principale J'ai maintenant un objet fenetre
-
 fenetre.show()                      # affichage de la fenêtre
 app.exec_()                         # exécution de l'application
