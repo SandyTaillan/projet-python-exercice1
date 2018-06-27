@@ -49,7 +49,7 @@ class Fiche(object):
 
         with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
             cont5 = f.read().splitlines()                  # on met le contenu dans une liste par ligne                                       # on met le contenu dans une variable
-            index1 = cont5.index(self.textsoluce)               # indice du début du code dans la liste
+            index1 = (cont5.index(self.textsoluce) + 1)                # indice du début du code dans la liste
             index2 = index1 + 5
             texte = (cont5[index1: index2])                # le texte est compris entre énoncé et code en liste
             contenu5 = ""                                    # transformation de la liste en string
@@ -62,7 +62,7 @@ class Fiche(object):
 
         with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
             cont10 = f.read().splitlines()  # on met le contenu dans une liste par ligne                                       # on met le contenu dans une variable
-            index1 = cont10.index(self.textsoluce)  # indice du début du code dans la liste
+            index1 = (cont10.index(self.textsoluce) + 1)  # indice du début du code dans la liste
             index2 = index1 + 10
             texte = (cont10[index1: index2])  # le texte est compris entre énoncé et code en liste
             contenu10 = ""  # transformation de la liste en string
@@ -74,7 +74,13 @@ class Fiche(object):
         """Permet de récupérer  tout le contenu de la note"""
 
         with open((self.dosdata + '/' + self.nomfich + '.txt'), 'r') as f:
-            contenufich = f.read()                           # on met le contenu dans une variable
+            cont = f.read().splitlines()                   # on met le contenu dans une variable
+            index1 = (cont.index(self.textsoluce) + 1)
+            texte = (cont[index1: (len(cont))])
+            contenufich = ""  # transformation de la liste en string
+            for line in texte:
+                contenufich = contenufich + str(line) + '\n'
+        return contenufich  # on retourne le contenu de la variable
         return contenufich                                   # on retourne le contenu de la variable
 
     def creationfich(self):

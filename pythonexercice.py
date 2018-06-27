@@ -220,28 +220,28 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
     def affichenoncefich(self):
         """Affichage de l'énoncé de la note."""
         self.nomfich, self.chfich = self.selectfich()
-        self.enoncefich = self.lirenoncefich()
+        self.enoncefich = self.lirenoncefich().decode('UTF-8')
         self.te_enonce.setText(self.enoncefich)
 
     def affich5lignes(self):
         """Affichage de 5 lignes du contenu de la note"""
 
         self.nomfich, self.chfich = self.selectfich()
-        contenu5 = self.lirecont5lignes()
+        contenu5 = self.lirecont5lignes().decode('UTF-8')
         self.te_contenu.setText(contenu5)                 # le texte est placé dans l'interface
 
     def affich10lignes(self):
         """Affichage de 10 lignes du contenu de la note"""
 
         self.nomfich, self.chfich = self.selectfich()
-        contenu10 = self.lirecont10lignes()
+        contenu10 = self.lirecont10lignes().decode('UTF-8')
         self.te_contenu.setText(contenu10)
 
     def affichConttotal(self):
         """Affichage du contenu complet de la note"""
 
         self.nomfich, self.chfich = self.selectfich()
-        contenufich = self.lireconttout()
+        contenufich = self.lireconttout().decode('UTF-8')
         self.te_contenu.setText(contenufich)  # le texte est placé dans l'interface
 
     def affichcreafich(self):
