@@ -1,9 +1,0 @@
-# Niveau : débutant
-
-# Enonce
-Test pour savoir si tout fonctionne bien
-
-# Solution
-Test sur la solution
-pour être sure que tout
-va bien.

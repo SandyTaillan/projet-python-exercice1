@@ -38,7 +38,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.textenonce = '# Enoncé :'
         self.textsoluce = '# Solution : '
 
-        # Appel de la fonction pour dessiner l'interface
+        # Appel des fonctions pour dessiner l'interface
 
         self.creationinterface()
         self.connectioninterface()
@@ -93,31 +93,34 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         # création de la barre de menu
         self.menuFichier = QtGui.QMenu(self.menubar)
-        self.menuCreer_exer = QtGui.QMenu(self.menubar)
+        self.menuGestion_fiche = QtGui.QMenu(self.menubar)
         self.menuChang_theme = QtGui.QMenu(self.menubar)
         self.menuAide = QtGui.QMenu(self.menubar)
 
         # création des sous-menus
         self.actionOuv_fich = QtGui.QAction(self)
-        self.actionSauv_fich = QtGui.QAction(self)
+        #self.actionSauv_fich = QtGui.QAction(self)
         self.actionFerm_fich = QtGui.QAction(self)
+        self.actionCreer_exercice = QtGui.QAction(self)
+        self.actionSupprimer_exercices = QtGui.QAction(self)
         self.actionTheme_clair = QtGui.QAction(self)
         self.actionTheme_sombre = QtGui.QAction(self)
         self.actionAide_log = QtGui.QAction(self)
         self.action_Apropos = QtGui.QAction(self)
-        self.actionCreer_exercice = QtGui.QAction(self)
+
 
         self.menuFichier.addAction(self.actionOuv_fich)
-        self.menuFichier.addAction(self.actionSauv_fich)
+        #self.menuFichier.addAction(self.actionSauv_fich)
         self.menuFichier.addAction(self.actionFerm_fich)
-        self.menuCreer_exer.addAction(self.actionCreer_exercice)
+        self.menuGestion_fiche.addAction(self.actionCreer_exercice)
+        self.menuGestion_fiche.addAction(self.actionSupprimer_exercices)
         self.menuChang_theme.addAction(self.actionTheme_clair)
         self.menuChang_theme.addAction(self.actionTheme_sombre)
         self.menuAide.addAction(self.actionAide_log)
         self.menuAide.addAction(self.action_Apropos)
 
         self.menubar.addAction(self.menuFichier.menuAction())
-        self.menubar.addAction(self.menuCreer_exer.menuAction())
+        self.menubar.addAction(self.menuGestion_fiche.menuAction())
         self.menubar.addAction(self.menuChang_theme.menuAction())
         self.menubar.addAction(self.menuAide.menuAction())
 
@@ -159,9 +162,11 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.radbout_interme.clicked.connect(self.affichselectionfich)
         self.radbout_expert.clicked.connect(self.affichselectionfich)
         self.listwid_fichier.itemClicked.connect(self.affichenoncefich)
+        self.actionFerm_fich.triggered.connect(self.fermerfichier)
         self.actionTheme_clair.triggered.connect(self.themeclair)
         self.actionTheme_sombre.triggered.connect(self.themesombre)
         self.actionCreer_exercice.triggered.connect(self.affichcreafich)
+        self.actionSupprimer_exercices.triggered.connect(self.supprimerfich)
 
     def retranslate(self):
         """Pour que le texte s'affiche en utf8."""
@@ -175,13 +180,14 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.btn_10lignes.setText(QtGui.QApplication.translate("self", "Voir 10 Lignes", None, QtGui.QApplication.UnicodeUTF8))
         self.btn_toutvoir.setText(QtGui.QApplication.translate("self", "Tout voir", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFichier.setTitle(QtGui.QApplication.translate("self", "Fichier", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuCreer_exer.setTitle(QtGui.QApplication.translate("self", "Fiche", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuGestion_fiche.setTitle(QtGui.QApplication.translate("self", "Fiche", None, QtGui.QApplication.UnicodeUTF8))
         self.menuChang_theme.setTitle(QtGui.QApplication.translate("self", "Changer le thème", None, QtGui.QApplication.UnicodeUTF8))
         self.menuAide.setTitle(QtGui.QApplication.translate("self", "Aide", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOuv_fich.setText(QtGui.QApplication.translate("self", "Ouvrir un fichier", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSauv_fich.setText(QtGui.QApplication.translate("self", "Sauvegarder un fichier", None, QtGui.QApplication.UnicodeUTF8))
+        #self.actionSauv_fich.setText(QtGui.QApplication.translate("self", "Sauvegarder un fichier", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFerm_fich.setText(QtGui.QApplication.translate("self", "Fermer le fichier", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCreer_exercice.setText(QtGui.QApplication.translate("self", "Créer un exercice", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSupprimer_exercices.setText(QtGui.QApplication.translate("self", "Supprimer l'exercice", None, QtGui.QApplication.UnicodeUTF8))
         self.actionTheme_clair.setText(QtGui.QApplication.translate("self", "Thème clair", None, QtGui.QApplication.UnicodeUTF8))
         self.actionTheme_sombre.setText(QtGui.QApplication.translate("self", "Thème sombre", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAide_log.setText(QtGui.QApplication.translate("self", "Aide sur le logiciel", None, QtGui.QApplication.UnicodeUTF8))
@@ -213,7 +219,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         fichselect = self.listwid_fichier.selectedItems()  # type list
         if not fichselect:
             return
-        self.nomfich = fichselect[-1].text()                # permet de récupérer juste le nom sélectionné
+        self.nomfich = fichselect[-1].text()               # permet de récupérer juste le nom sélectionné
         self.chfich = os.path.join(self.dosdata, '/', self.nomfich + '.txt')
         return self.nomfich, self.chfich
 
@@ -299,6 +305,9 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         QtCore.QMetaObject.connectSlotsByName(self.fenetrecreation)
 
+    def fermerfichier(self):
+        fenetre.close()
+
     def donneescreatfich(self):
         """Fonction permettant de récupérer les données de création d'une fiche d'exercice."""
 
@@ -318,6 +327,16 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.le_nomfich2.clear()
         self.le_enonce2.clear()
         self.le_soluce2.clear()
+        self.affichlistfich()
+
+    def supprimerfich(self):
+        """Fonction faisant le lien avec l'interface et la fonction suppressionfich"""
+
+        fichselect = self.listwid_fichier.selectedItems()  # type list
+        if not fichselect:
+            return
+        self.chfich = os.path.join(self.dosdata, self.nomfich + '.txt')
+        self.suppressionfich()
         self.affichlistfich()
 
     def retranslateUi(self):
@@ -349,6 +368,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         ts = QtCore.QTextStream(f)
         stylesheet = ts.readAll()
         self.setStyleSheet(stylesheet)
+
 
 
 app = QtGui.QApplication([])        # création de l'application

@@ -1,0 +1,19 @@
+# Niveau : intermédiaire
+# Enoncé :
+fiche de test
+avec un joli niveau intermédiaire
+# Solution : 
+pour savoir comment
+cela fonctionne
+avec des ç et à et ù
+ 4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14

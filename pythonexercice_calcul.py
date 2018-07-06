@@ -81,7 +81,6 @@ class Fiche(object):
             for line in texte:
                 contenufich = contenufich + str(line) + '\n'
         return contenufich  # on retourne le contenu de la variable
-        return contenufich                                   # on retourne le contenu de la variable
 
     def creationfich(self):
         """Fonction permettant de créer une fiche d'exercice à partir des données de la fonction donneescreatfich."""
@@ -90,3 +89,9 @@ class Fiche(object):
 
         with open(self.chfich, 'w') as f:
             f.write(self.contenu)
+
+    def suppressionfich(self):
+        """Fonction permettant la suppression d'une fiche."""
+
+        print(self.chfich)
+        os.remove(self.chfich)

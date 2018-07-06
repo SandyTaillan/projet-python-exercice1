@@ -14,11 +14,12 @@ QTextEdit, QListView {background-color: #343741;}
 QPushButton {
     min-height: 20 px;
     color: #CFCFCF; outline: 0 px;
-    border: 1px solid #39475f;
-    border-top: 1px solid #313d51;
-    border-left: 1px solid #313d51;
+    border: 1px solid #39542c;
+    border-top: 1px solid #3d592e;
+    border-left: 1px solid #51763d;
     border-style: outset;
 }
+VLine:Shadow {background-color: green;}
 QRadioButton:checked {background-color: #1b2b33;border-style: outset; outline: 0px; }
 QRadioButton:unchecked {background-color: #1b2b33;border-style: outset;}
 QRadioButton:pressed {background-color: #1b2b33; outline: 0px; border: 0;}
