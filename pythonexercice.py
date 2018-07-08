@@ -5,10 +5,8 @@
 # todo : Faire en PySide puis en PySide 2
 # todo : Je devrais donc avoir au moins 2 ou 3 versions de mon script
 # todo : rajouter une barre de progression avec la posssibilité d'indiquer qu'un exercice est réussi.
-# todo : Faire en sorte que le texte dans les fiches soit en utf8.
-# todo :  Tout le contenu du fichier s'affiche au lieu de seulement la solution ;
-# todo :  Je ne veux pas que #Enonce et #solution s'affichent.
-#
+# todo : Je n'arrive pas à modifier plusieurs fois une fiche. Message d'erreur :
+#                           QLayout: Attempting to add QLayout "" to QDialog "", which already has a layout
 # En python 2.7 PySide 1
 
 # importation des modules nécessaire à la création de mon application
@@ -25,8 +23,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         # On initialise la fenêtre en lui donnant un titre
         self.setWindowTitle('Mon Logiciel')
-        self.fenetrecreation = QtGui.QDialog()
-        self.fenetrecreation.setWindowModality(QtCore.Qt.ApplicationModal)
+
 
         # déclaration des variables
         chbase = os.path.dirname(__file__)
@@ -37,7 +34,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.textenonce = '# Enoncé :'
         self.textsoluce = '# Solution : '
         self.contenu = ""
-        self.choixcreafich = 'oui'
 
         # Appel des fonctions pour dessiner l'interface
         self.creationinterface()
@@ -256,6 +252,8 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
     def affichcreafich(self):
 
+        self.fenetrecreation = QtGui.QDialog()
+        self.fenetrecreation.setWindowModality(QtCore.Qt.ApplicationModal)
         self.fenetrecreation.show()
 
         self.fenetrecreation.resize(605, 555)
@@ -306,10 +304,9 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.fenetrecreation.accept)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), self.fenetrecreation.reject)
 
-        if self.choixcreafich == 'oui':
-            self.buttonBox.clicked.connect(self.donneescreatfich)
-        if self.choixcreafich == 'non':
-            self.buttonBox.clicked.connect(self.modifierfiche)
+
+        self.buttonBox.clicked.connect(self.donneescreatfich)
+
 
         QtCore.QMetaObject.connectSlotsByName(self.fenetrecreation)
 
@@ -350,15 +347,11 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
     def modifierfiche(self):
         """Fonction pour créer l'interface graphique de la modification de fiche."""
 
-        self.choixcreafich == "non"
-
         # affichage fenêtre
         self.affichcreafich()
-        # affichage de l'énoncé après récupération du nom de fichier sélectionné
+        # récupération du nom et du chemin d'accès de la fiche sélectionnée et affichage
         self.nomfich, self.chfich = self.selectfich()
         self.le_nomfich2.setText(self.nomfich)
-        self.enoncefich = self.lirenoncefich().decode('UTF-8')
-        self.le_enonce2.setText(self.enoncefich)
         # affiche du niveau de la fiche sélectionnée
         if self.contenonce[0] == '# Niveau : débutant':
             self.radbout_debut1.setChecked(True)
@@ -366,15 +359,14 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
             self.radbout_interme1.setChecked(True)
         else :
             self.radbout_expert1.setChecked(True)
-        # affichage du contenu de la fiche sélectionnée
-        contenufich = self.lireconttout().decode('UTF-8')
-        self.le_soluce2.setText(contenufich)  # le texte est placé dans l'interface
-
-        self.contenu = self.niveaudeb + '\n' + self.textenonce + '\n' + self.enoncefich + '\n' + self.textsoluce + '\n' + self.contenufich
-        Fiche.creationfich(self)
-
-
-
+        # récupération de l'énoncé de la fiche et affichage
+        self.enoncefich = self.lirenoncefich().decode('UTF-8')
+        self.le_enonce2.setText(self.enoncefich)
+        # récupération et affichage de la solution de la fiche sélectionnée
+        self.contenufich = self.lireconttout().decode('UTF-8')
+        self.le_soluce2.setText(self.contenufich)  # le texte est placé dans l'interface
+        self.affichlistfich()
+        
     def retranslateUi(self):
         self.setWindowTitle(QtGui.QApplication.translate("self.fenetrecreation", "Création d'une fiche", None, QtGui.QApplication.UnicodeUTF8))
         self.la_nomfich2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez le nom de la fiche :", None, QtGui.QApplication.UnicodeUTF8))

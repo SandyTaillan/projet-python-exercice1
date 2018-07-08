@@ -95,8 +95,3 @@ class Fiche(object):
         """Fonction permettant la suppression d'une fiche."""
 
         os.remove(self.chfich)
-
-    def modificationfich(self):
-        """Fonction permettant de modifier une fiche."""
-
-        print("premier test")
