@@ -23,8 +23,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         # On initialise la fenêtre en lui donnant un titre
         self.setWindowTitle('Mon Logiciel')
-
-
         # déclaration des variables
         chbase = os.path.dirname(__file__)
         self.nomfich = ""
@@ -105,7 +103,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.actionAide_log = QtGui.QAction(self)
         self.action_Apropos = QtGui.QAction(self)
 
-
         self.menuFichier.addAction(self.actionOuv_fich)
         #self.menuFichier.addAction(self.actionSauv_fich)
         self.menuFichier.addAction(self.actionFerm_fich)
@@ -166,6 +163,8 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.actionCreer_exercice.triggered.connect(self.affichcreafich)
         self.acionModifier_exercices.triggered.connect(self.modifierfiche)
         self.actionSupprimer_exercices.triggered.connect(self.supprimerfich)
+        self.actionAide_log.triggered.connect(self.affichinterfaceaide)
+        self.action_Apropos.triggered.connect(self.affichinterfaceapropos)
 
     def retranslate(self):
         """Pour que le texte s'affiche en utf8."""
@@ -366,7 +365,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.contenufich = self.lireconttout().decode('UTF-8')
         self.le_soluce2.setText(self.contenufich)  # le texte est placé dans l'interface
         self.affichlistfich()
-        
+
     def retranslateUi(self):
         self.setWindowTitle(QtGui.QApplication.translate("self.fenetrecreation", "Création d'une fiche", None, QtGui.QApplication.UnicodeUTF8))
         self.la_nomfich2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez le nom de la fiche :", None, QtGui.QApplication.UnicodeUTF8))
@@ -394,6 +393,28 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         ts = QtCore.QTextStream(f)
         stylesheet = ts.readAll()
         self.setStyleSheet(stylesheet)
+
+    def affichinterfaceaide(self):
+        """Fonction pour créer une fenêtre d'aide avec un QMessageBox d'information."""
+
+        phrase1 = "Ce programme est en cours de création, il peut donc contenir des bugs."
+        phrase2 = "Veillez à ce qu'une fiche soit toujours sélectionnée pour la suppression, ou une modification " \
+                  "d'une fiche."
+        phrase3 = "Attention, la suppression d'une fiche est définitive et sans message d'alerte."
+        phrase4 = phrase1.decode('UTF-8') + '\n' + phrase2.decode('UTF-8') + '\n'*2 + phrase3.decode('UTF-8')
+        self.fenetreaide = QtGui.QMessageBox.information(None, "Aide", phrase4)
+
+    def affichinterfaceapropos(self):
+        """fonction pour réaliser une fenêtre d'à-propos avec un QMessageBox d'information."""
+
+        phrase1 = "<p>Ce programme a été réalisé par <strong>Sandy Taillan</strong> à partir " \
+                  "du cours de Thibault Houdon sur Udemy.</p><br/> "
+        phrase2 = "<p>Je remercie tout particulièrement <a href='https://github.com/Cardiox12'>@mielpops</a> " \
+                  "pour m'avoir encouragé dans mon apprentissage de Python, "
+        phrase3 = "et pour avoir réalisé les premiers challenges sur le Discord de Thibault.</p>"
+        phrase4 = "<a href='https://www.dessins-plaisirs.fr/'>Mon site internet</a>"
+        phrase5 = phrase1 + phrase2 + phrase3 + phrase4
+        self.fenetreaide = QtGui.QMessageBox.information(None, "A-propos", phrase5.decode('UTF-8'))
 
 
 app = QtGui.QApplication([])        # création de l'application
