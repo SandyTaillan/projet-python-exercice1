@@ -7,6 +7,7 @@
 import os
 from glob import glob
 
+
 class Fiche(object):
     """Cette classe regroupe toutes les opérations à effectuer sur les fiches."""
     def __init__(self, nomfich):
@@ -93,5 +94,9 @@ class Fiche(object):
     def suppressionfich(self):
         """Fonction permettant la suppression d'une fiche."""
 
-        print(self.chfich)
         os.remove(self.chfich)
+
+    def modificationfich(self):
+        """Fonction permettant de modifier une fiche."""
+
+        print("premier test")

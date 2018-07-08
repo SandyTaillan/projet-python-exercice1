@@ -1,0 +1,25 @@
+# Niveau : intermédiaire
+# Enoncé :
+fiche de test 1
+1
+2
+3
+4
+
+
+# Solution : 
+5
+56
+123
+145
+78
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10

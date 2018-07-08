@@ -25,7 +25,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         # On initialise la fenêtre en lui donnant un titre
         self.setWindowTitle('Mon Logiciel')
-
         self.fenetrecreation = QtGui.QDialog()
         self.fenetrecreation.setWindowModality(QtCore.Qt.ApplicationModal)
 
@@ -37,9 +36,10 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.niveaudeb = '# Niveau : débutant'
         self.textenonce = '# Enoncé :'
         self.textsoluce = '# Solution : '
+        self.contenu = ""
+        self.choixcreafich = 'oui'
 
         # Appel des fonctions pour dessiner l'interface
-
         self.creationinterface()
         self.connectioninterface()
         self.themesombre()
@@ -102,6 +102,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         #self.actionSauv_fich = QtGui.QAction(self)
         self.actionFerm_fich = QtGui.QAction(self)
         self.actionCreer_exercice = QtGui.QAction(self)
+        self.acionModifier_exercices = QtGui.QAction(self)
         self.actionSupprimer_exercices = QtGui.QAction(self)
         self.actionTheme_clair = QtGui.QAction(self)
         self.actionTheme_sombre = QtGui.QAction(self)
@@ -113,6 +114,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         #self.menuFichier.addAction(self.actionSauv_fich)
         self.menuFichier.addAction(self.actionFerm_fich)
         self.menuGestion_fiche.addAction(self.actionCreer_exercice)
+        self.menuGestion_fiche.addAction(self.acionModifier_exercices)
         self.menuGestion_fiche.addAction(self.actionSupprimer_exercices)
         self.menuChang_theme.addAction(self.actionTheme_clair)
         self.menuChang_theme.addAction(self.actionTheme_sombre)
@@ -166,6 +168,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.actionTheme_clair.triggered.connect(self.themeclair)
         self.actionTheme_sombre.triggered.connect(self.themesombre)
         self.actionCreer_exercice.triggered.connect(self.affichcreafich)
+        self.acionModifier_exercices.triggered.connect(self.modifierfiche)
         self.actionSupprimer_exercices.triggered.connect(self.supprimerfich)
 
     def retranslate(self):
@@ -187,6 +190,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         #self.actionSauv_fich.setText(QtGui.QApplication.translate("self", "Sauvegarder un fichier", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFerm_fich.setText(QtGui.QApplication.translate("self", "Fermer le fichier", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCreer_exercice.setText(QtGui.QApplication.translate("self", "Créer un exercice", None, QtGui.QApplication.UnicodeUTF8))
+        self.acionModifier_exercices.setText(QtGui.QApplication.translate("self", "Modifier l'exercice", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSupprimer_exercices.setText(QtGui.QApplication.translate("self", "Supprimer l'exercice", None, QtGui.QApplication.UnicodeUTF8))
         self.actionTheme_clair.setText(QtGui.QApplication.translate("self", "Thème clair", None, QtGui.QApplication.UnicodeUTF8))
         self.actionTheme_sombre.setText(QtGui.QApplication.translate("self", "Thème sombre", None, QtGui.QApplication.UnicodeUTF8))
@@ -301,7 +305,11 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
 
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.fenetrecreation.accept)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), self.fenetrecreation.reject)
-        self.buttonBox.clicked.connect(self.donneescreatfich)
+
+        if self.choixcreafich == 'oui':
+            self.buttonBox.clicked.connect(self.donneescreatfich)
+        if self.choixcreafich == 'non':
+            self.buttonBox.clicked.connect(self.modifierfiche)
 
         QtCore.QMetaObject.connectSlotsByName(self.fenetrecreation)
 
@@ -339,6 +347,34 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.suppressionfich()
         self.affichlistfich()
 
+    def modifierfiche(self):
+        """Fonction pour créer l'interface graphique de la modification de fiche."""
+
+        self.choixcreafich == "non"
+
+        # affichage fenêtre
+        self.affichcreafich()
+        # affichage de l'énoncé après récupération du nom de fichier sélectionné
+        self.nomfich, self.chfich = self.selectfich()
+        self.le_nomfich2.setText(self.nomfich)
+        self.enoncefich = self.lirenoncefich().decode('UTF-8')
+        self.le_enonce2.setText(self.enoncefich)
+        # affiche du niveau de la fiche sélectionnée
+        if self.contenonce[0] == '# Niveau : débutant':
+            self.radbout_debut1.setChecked(True)
+        elif self.contenonce[0] == '# Niveau : intermédiaire':
+            self.radbout_interme1.setChecked(True)
+        else :
+            self.radbout_expert1.setChecked(True)
+        # affichage du contenu de la fiche sélectionnée
+        contenufich = self.lireconttout().decode('UTF-8')
+        self.le_soluce2.setText(contenufich)  # le texte est placé dans l'interface
+
+        self.contenu = self.niveaudeb + '\n' + self.textenonce + '\n' + self.enoncefich + '\n' + self.textsoluce + '\n' + self.contenufich
+        Fiche.creationfich(self)
+
+
+
     def retranslateUi(self):
         self.setWindowTitle(QtGui.QApplication.translate("self.fenetrecreation", "Création d'une fiche", None, QtGui.QApplication.UnicodeUTF8))
         self.la_nomfich2.setText(QtGui.QApplication.translate("self.fenetrecreation", "Entrez le nom de la fiche :", None, QtGui.QApplication.UnicodeUTF8))
@@ -347,8 +383,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         self.radbout_debut1.setText(QtGui.QApplication.translate("self.fenetrecreation", "Niv. débutant", None, QtGui.QApplication.UnicodeUTF8))
         self.radbout_interme1.setText(QtGui.QApplication.translate("self.fenetrecreation", "Niv. intermédiaire", None, QtGui.QApplication.UnicodeUTF8))
         self.radbout_expert1.setText(QtGui.QApplication.translate("self.fenetrecreation", "Niv. expert", None, QtGui.QApplication.UnicodeUTF8))
-
-
     # gestion des thèmes
 
     def themesombre(self):
@@ -368,7 +402,6 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         ts = QtCore.QTextStream(f)
         stylesheet = ts.readAll()
         self.setStyleSheet(stylesheet)
-
 
 
 app = QtGui.QApplication([])        # création de l'application

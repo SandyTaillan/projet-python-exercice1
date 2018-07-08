@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0b0d396d-acb7-4834-9a4e-8e7d8af3d413" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/sandy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/sandy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/fiche2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/fiche3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/fiche4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ficheinitiale.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface/theme/interface_sombre.css" beforeDir="false" afterPath="$PROJECT_DIR$/interface/theme/interface_sombre.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/fiche de test 3.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pythonexercice.py" beforeDir="false" afterPath="$PROJECT_DIR$/pythonexercice.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pythonexercice_calcul.py" beforeDir="false" afterPath="$PROJECT_DIR$/pythonexercice_calcul.py" afterDir="false" />
     </list>
@@ -23,28 +18,22 @@
     <favorites_list name="projet-python-exercice1" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.2624672">
+    <splitter split-orientation="horizontal" split-proportion="0.4462399">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="pythonexercice_calcul.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pythonexercice_calcul.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+                <state relative-caret-position="-52">
+                  <caret line="29" column="25" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="37" />
                   <folding>
                     <element signature="n#!!doc" />
                     <element signature="e#156#165#0" expanded="true" />
                     <element signature="e#334#356#0" />
                     <element signature="e#393#828#0" />
-                    <element signature="e#875#1326#0" />
-                    <element signature="e#969#1291#0" />
-                    <element signature="e#1011#1291#0" />
-                    <element signature="e#1174#1291#0" />
-                    <element signature="e#1365#2129#0" />
                     <element signature="e#2170#3023#0" />
                     <element signature="e#3065#3815#0" />
                     <element signature="e#3853#4411#0" />
-                    <element signature="e#4449#4708#0" />
                   </folding>
                 </state>
               </provider>
@@ -57,22 +46,22 @@
           <file leaf-file-name="pythonexercice.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pythonexercice.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="623">
-                  <caret line="336" column="18" selection-start-line="336" selection-start-column="18" selection-end-line="336" selection-end-column="18" />
+                <state relative-caret-position="-1480">
+                  <caret line="256" selection-start-line="256" selection-end-line="256" />
                   <folding>
                     <element signature="n#!!doc" />
                     <element signature="e#600#609#0" expanded="true" />
-                    <element signature="e#1743#6325#0" />
-                    <element signature="e#7199#9961#0" />
+                    <element signature="e#1741#6429#0" />
+                    <element signature="e#6498#7446#0" />
+                    <element signature="e#7408#10314#0" />
+                    <element signature="e#10026#10315#0" />
                     <element signature="e#10360#10922#0" />
-                    <element signature="e#11369#11573#0" />
+                    <element signature="e#10958#11327#0" />
                     <element signature="e#11612#11870#0" />
                     <element signature="e#11910#12118#0" />
-                    <element signature="e#12159#12401#0" />
-                    <element signature="e#12442#15064#0" />
                     <element signature="e#15103#15118#0" />
-                    <element signature="e#15160#16031#0" />
-                    <element signature="e#16070#17120#0" />
+                    <element signature="e#16150#16362#0" />
+                    <element signature="e#16762#17812#0" />
                     <element signature="e#17184#17489#0" />
                     <element signature="e#17525#17808#0" />
                   </folding>
@@ -125,16 +114,17 @@
         <option value="$PROJECT_DIR$/interface/theme/interface_claire.css" />
         <option value="$PROJECT_DIR$/interface/theme/interface_sombre.css" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_4.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py" />
         <option value="$PROJECT_DIR$/pythonexercice_calcul.py" />
         <option value="$PROJECT_DIR$/pythonexercice.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1952" />
-    <option name="y" value="-4" />
-    <option name="width" value="1888" />
-    <option name="height" value="1084" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="953" />
+    <option name="y" value="37" />
+    <option name="width" value="960" />
+    <option name="height" value="528" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -204,24 +194,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="pythonexercice (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="projet-python-exercice1" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../fenetre_avec_menu" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../fenetre_avec_menu/pythonexercice.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="pythonexercice" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="projet-python-exercice1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -240,7 +212,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="pythonnerie_inter (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pythonexercice_calcul" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="projet-python-exercice1" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -248,11 +220,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../projet-exercice-python" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../projet-exercice-python/pythonnerie_inter.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pythonexercice_calcul.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -276,20 +248,38 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="scratch_5" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="projet-python-exercice1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <list>
       <item itemvalue="Python.pythonexercice" />
       <item itemvalue="Python.convertisseurDinterface" />
-      <item itemvalue="Python.pythonexercice (1)" />
-      <item itemvalue="Python.pythonnerie_inter (1)" />
       <item itemvalue="Python.scratch_4" />
+      <item itemvalue="Python.scratch_5" />
+      <item itemvalue="Python.pythonexercice_calcul" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pythonexercice" />
+        <item itemvalue="Python.pythonexercice_calcul" />
+        <item itemvalue="Python.scratch_5" />
         <item itemvalue="Python.scratch_4" />
         <item itemvalue="Python.convertisseurDinterface" />
-        <item itemvalue="Python.pythonnerie_inter (1)" />
-        <item itemvalue="Python.pythonexercice (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -317,16 +307,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1951" y="-14" width="1890" height="1095" extended-state="6" />
+    <frame x="1952" y="-4" width="1888" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="PlantUML" order="4" weight="0.3299025" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1744312" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1283857" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32916668" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32916668" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.32916668" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24636175" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17879418" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32916668" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32960597" />
@@ -370,14 +360,14 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pythonexercice.py</url>
-          <line>107</line>
+          <line>108</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="53" />
+      <option name="time" value="65" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -390,15 +380,9 @@
             <element signature="e#156#165#0" expanded="true" />
             <element signature="e#334#356#0" />
             <element signature="e#393#828#0" />
-            <element signature="e#875#1326#0" />
-            <element signature="e#969#1291#0" />
-            <element signature="e#1011#1291#0" />
-            <element signature="e#1174#1291#0" />
-            <element signature="e#1365#2129#0" />
             <element signature="e#2170#3023#0" />
             <element signature="e#3065#3815#0" />
             <element signature="e#3853#4411#0" />
-            <element signature="e#4449#4708#0" />
           </folding>
         </state>
       </provider>
@@ -410,17 +394,17 @@
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#600#609#0" expanded="true" />
-            <element signature="e#1743#6325#0" />
-            <element signature="e#7199#9961#0" />
+            <element signature="e#1741#6429#0" />
+            <element signature="e#6498#7446#0" />
+            <element signature="e#7408#10314#0" />
+            <element signature="e#10026#10315#0" />
             <element signature="e#10360#10922#0" />
-            <element signature="e#11369#11573#0" />
+            <element signature="e#10958#11327#0" />
             <element signature="e#11612#11870#0" />
             <element signature="e#11910#12118#0" />
-            <element signature="e#12159#12401#0" />
-            <element signature="e#12442#15064#0" />
             <element signature="e#15103#15118#0" />
-            <element signature="e#15160#16031#0" />
-            <element signature="e#16070#17120#0" />
+            <element signature="e#16150#16362#0" />
+            <element signature="e#16762#17812#0" />
             <element signature="e#17184#17489#0" />
             <element signature="e#17525#17808#0" />
           </folding>
@@ -460,15 +444,9 @@
             <element signature="e#156#165#0" expanded="true" />
             <element signature="e#334#356#0" />
             <element signature="e#393#828#0" />
-            <element signature="e#875#1326#0" />
-            <element signature="e#969#1291#0" />
-            <element signature="e#1011#1291#0" />
-            <element signature="e#1174#1291#0" />
-            <element signature="e#1365#2129#0" />
             <element signature="e#2170#3023#0" />
             <element signature="e#3065#3815#0" />
             <element signature="e#3853#4411#0" />
-            <element signature="e#4449#4708#0" />
           </folding>
         </state>
       </provider>
@@ -487,17 +465,17 @@
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#600#609#0" expanded="true" />
-            <element signature="e#1743#6325#0" />
-            <element signature="e#7199#9961#0" />
+            <element signature="e#1741#6429#0" />
+            <element signature="e#6498#7446#0" />
+            <element signature="e#7408#10314#0" />
+            <element signature="e#10026#10315#0" />
             <element signature="e#10360#10922#0" />
-            <element signature="e#11369#11573#0" />
+            <element signature="e#10958#11327#0" />
             <element signature="e#11612#11870#0" />
             <element signature="e#11910#12118#0" />
-            <element signature="e#12159#12401#0" />
-            <element signature="e#12442#15064#0" />
             <element signature="e#15103#15118#0" />
-            <element signature="e#15160#16031#0" />
-            <element signature="e#16070#17120#0" />
+            <element signature="e#16150#16362#0" />
+            <element signature="e#16762#17812#0" />
             <element signature="e#17184#17489#0" />
             <element signature="e#17525#17808#0" />
           </folding>
@@ -527,15 +505,9 @@
             <element signature="e#156#165#0" expanded="true" />
             <element signature="e#334#356#0" />
             <element signature="e#393#828#0" />
-            <element signature="e#875#1326#0" />
-            <element signature="e#969#1291#0" />
-            <element signature="e#1011#1291#0" />
-            <element signature="e#1174#1291#0" />
-            <element signature="e#1365#2129#0" />
             <element signature="e#2170#3023#0" />
             <element signature="e#3065#3815#0" />
             <element signature="e#3853#4411#0" />
-            <element signature="e#4449#4708#0" />
           </folding>
         </state>
       </provider>
@@ -547,17 +519,17 @@
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#600#609#0" expanded="true" />
-            <element signature="e#1743#6325#0" />
-            <element signature="e#7199#9961#0" />
+            <element signature="e#1741#6429#0" />
+            <element signature="e#6498#7446#0" />
+            <element signature="e#7408#10314#0" />
+            <element signature="e#10026#10315#0" />
             <element signature="e#10360#10922#0" />
-            <element signature="e#11369#11573#0" />
+            <element signature="e#10958#11327#0" />
             <element signature="e#11612#11870#0" />
             <element signature="e#11910#12118#0" />
-            <element signature="e#12159#12401#0" />
-            <element signature="e#12442#15064#0" />
             <element signature="e#15103#15118#0" />
-            <element signature="e#15160#16031#0" />
-            <element signature="e#16070#17120#0" />
+            <element signature="e#16150#16362#0" />
+            <element signature="e#16762#17812#0" />
             <element signature="e#17184#17489#0" />
             <element signature="e#17525#17808#0" />
           </folding>
@@ -580,15 +552,9 @@
             <element signature="e#156#165#0" expanded="true" />
             <element signature="e#334#356#0" />
             <element signature="e#393#828#0" />
-            <element signature="e#875#1326#0" />
-            <element signature="e#969#1291#0" />
-            <element signature="e#1011#1291#0" />
-            <element signature="e#1174#1291#0" />
-            <element signature="e#1365#2129#0" />
             <element signature="e#2170#3023#0" />
             <element signature="e#3065#3815#0" />
             <element signature="e#3853#4411#0" />
-            <element signature="e#4449#4708#0" />
           </folding>
         </state>
       </provider>
@@ -736,28 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pythonexercice_calcul.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#156#165#0" expanded="true" />
-            <element signature="e#334#356#0" />
-            <element signature="e#393#828#0" />
-            <element signature="e#875#1326#0" />
-            <element signature="e#969#1291#0" />
-            <element signature="e#1011#1291#0" />
-            <element signature="e#1174#1291#0" />
-            <element signature="e#1365#2129#0" />
-            <element signature="e#2170#3023#0" />
-            <element signature="e#3065#3815#0" />
-            <element signature="e#3853#4411#0" />
-            <element signature="e#4449#4708#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface/interface_graph3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -768,24 +712,50 @@
     <entry file="file://$PROJECT_DIR$/interface/interface_graph.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="7" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pythonexercice_calcul.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-52">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" />
+            <element signature="e#156#165#0" expanded="true" />
+            <element signature="e#334#356#0" />
+            <element signature="e#393#828#0" />
+            <element signature="e#2170#3023#0" />
+            <element signature="e#3065#3815#0" />
+            <element signature="e#3853#4411#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pythonexercice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="336" column="18" selection-start-line="336" selection-start-column="18" selection-end-line="336" selection-end-column="18" />
+        <state relative-caret-position="-1480">
+          <caret line="256" selection-start-line="256" selection-end-line="256" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#600#609#0" expanded="true" />
-            <element signature="e#1743#6325#0" />
-            <element signature="e#7199#9961#0" />
+            <element signature="e#1741#6429#0" />
+            <element signature="e#6498#7446#0" />
+            <element signature="e#7408#10314#0" />
+            <element signature="e#10026#10315#0" />
             <element signature="e#10360#10922#0" />
-            <element signature="e#11369#11573#0" />
+            <element signature="e#10958#11327#0" />
             <element signature="e#11612#11870#0" />
             <element signature="e#11910#12118#0" />
-            <element signature="e#12159#12401#0" />
-            <element signature="e#12442#15064#0" />
             <element signature="e#15103#15118#0" />
-            <element signature="e#15160#16031#0" />
-            <element signature="e#16070#17120#0" />
+            <element signature="e#16150#16362#0" />
+            <element signature="e#16762#17812#0" />
             <element signature="e#17184#17489#0" />
             <element signature="e#17525#17808#0" />
           </folding>
