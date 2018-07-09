@@ -7,6 +7,10 @@
 # todo : rajouter une barre de progression avec la posssibilité d'indiquer qu'un exercice est réussi.
 # todo : Je n'arrive pas à modifier plusieurs fois une fiche. Message d'erreur :
 #                           QLayout: Attempting to add QLayout "" to QDialog "", which already has a layout
+# todo : Lorsque je visualise des fiches à la suite, la solution ne se met pas à jour automatiquement.
+# todo : rajouter un bouton qui permet de voir la liste complète des fiches.
+# todo : Faire en sorte que la couleur du radiobutton soit vert et non rouge.
+
 # En python 2.7 PySide 1
 
 # importation des modules nécessaire à la création de mon application
@@ -402,7 +406,8 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
                   "d'une fiche."
         phrase3 = "Attention, la suppression d'une fiche est définitive et sans message d'alerte."
         phrase4 = phrase1.decode('UTF-8') + '\n' + phrase2.decode('UTF-8') + '\n'*2 + phrase3.decode('UTF-8')
-        self.fenetreaide = QtGui.QMessageBox.information(None, "Aide", phrase4)
+        self.fenetreaide = QtGui.QMessageBox.information(self.centralwidget, "Aide", phrase4)
+
 
     def affichinterfaceapropos(self):
         """fonction pour réaliser une fenêtre d'à-propos avec un QMessageBox d'information."""
@@ -414,7 +419,7 @@ class FenetrePrincipale(QtGui.QMainWindow, Fiche):
         phrase3 = "et pour avoir réalisé les premiers challenges sur le Discord de Thibault.</p>"
         phrase4 = "<a href='https://www.dessins-plaisirs.fr/'>Mon site internet</a>"
         phrase5 = phrase1 + phrase2 + phrase3 + phrase4
-        self.fenetreaide = QtGui.QMessageBox.information(None, "A-propos", phrase5.decode('UTF-8'))
+        self.fenetreaide = QtGui.QMessageBox.information(self.centralwidget, "A-propos", phrase5.decode('UTF-8'))
 
 
 app = QtGui.QApplication([])        # création de l'application

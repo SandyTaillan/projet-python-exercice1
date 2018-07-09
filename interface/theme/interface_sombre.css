@@ -24,4 +24,5 @@ QRadioButton:checked {background-color: #1b2b33;border-style: outset; outline: 0
 QRadioButton:unchecked {background-color: #1b2b33;border-style: outset;}
 QRadioButton:pressed {background-color: #1b2b33; outline: 0px; border: 0;}
 QRadioButton:focus{background-color: #1b2b33;outline: 0px; border: 0;}
-QListView:item:selected {background-color : #5f8b48;}
+QListView:item:selected {background-color: #5f8b48;}
+QMessageBox.information {background-color: green;}
