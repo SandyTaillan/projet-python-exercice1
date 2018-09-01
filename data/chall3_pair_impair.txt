@@ -1,4 +1,6 @@
+# Ne pas toucher cette ligne jusquà # Enoncé. Sinon, le logiciel ne fonctionnera plus.
 # Niveau : débutant
+# Réussite : non
 # Enoncé :
 Challenge # 3 Pair ou Impair ? : 
 Notions abordées - Compréhension de liste 

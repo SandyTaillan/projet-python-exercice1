@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ExercicesPython</class>
+ <widget class="QMainWindow" name="ExercicesPython">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>703</width>
+    <height>906</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="fenetreprincipale_2">
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="1" rowspan="3">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2" rowspan="3">
+     <widget class="QFrame" name="Frcoldroite">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="5" column="0" colspan="3">
+        <widget class="Line" name="line_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="btn_5lignes">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>Voir 5 lignes</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="la_enonce">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Énoncé : </string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="3">
+        <widget class="QTextEdit" name="te_contenu"/>
+       </item>
+       <item row="6" column="1">
+        <widget class="QPushButton" name="btn_reussite">
+         <property name="text">
+          <string>j'ai réussi ! </string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="btn_10lignes">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Voir 10 lignes</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QTextEdit" name="te_enonce">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QPushButton" name="btn_faire">
+         <property name="text">
+          <string>À refaire</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="la_contenu">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Solution : </string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QPushButton" name="btn_toutvoir">
+         <property name="text">
+          <string>tout voir</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="3">
+     <widget class="QFrame" name="Frcolgauche">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="2" column="0">
+        <widget class="QFrame" name="frame_4">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QListWidget" name="listwid_fichier"/>
+          </item>
+          <item>
+           <widget class="QListWidget" name="listreussi_fichier"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QFrame" name="Fradiobouton">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="GBradiobt">
+            <property name="title">
+             <string>Niveaux</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="1" column="1">
+              <widget class="QRadioButton" name="radbout_interme">
+               <property name="text">
+                <string>Intermédiaire</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QRadioButton" name="radbout_expert">
+               <property name="text">
+                <string>Expert</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="radbout_debut">
+               <property name="text">
+                <string>Débutant</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="radbout_toutniv">
+               <property name="text">
+                <string>Tous les niveaux</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="GBvisuali">
+            <property name="title">
+             <string>Visualisation exercices</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="2" column="2">
+              <widget class="QRadioButton" name="btexerfaire">
+               <property name="text">
+                <string>À faire</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QRadioButton" name="btexerreussi">
+               <property name="text">
+                <string>Réussis</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="btexertout">
+               <property name="text">
+                <string>Tous les exercices</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QProgressBar" name="progressBar1">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>703</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>Fichier</string>
+    </property>
+    <addaction name="actionFerm_fich"/>
+   </widget>
+   <widget class="QMenu" name="menuCr_er_un_exercice">
+    <property name="title">
+     <string>Les exercices</string>
+    </property>
+    <addaction name="actionCreer_exercice"/>
+    <addaction name="actionModifier_exercices"/>
+    <addaction name="actionSupprimer_exercices"/>
+   </widget>
+   <widget class="QMenu" name="menuChanger_le_th_me">
+    <property name="title">
+     <string>Changer le thème</string>
+    </property>
+    <addaction name="actionTheme_clair"/>
+    <addaction name="actionTheme_sombre"/>
+   </widget>
+   <widget class="QMenu" name="menuAide">
+    <property name="title">
+     <string>Aide</string>
+    </property>
+    <addaction name="actionAide_log"/>
+    <addaction name="action_Apropos"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="menuCr_er_un_exercice"/>
+   <addaction name="menuChanger_le_th_me"/>
+   <addaction name="menuAide"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOuvrir_un_fichier">
+   <property name="text">
+    <string>Ouvrir un fichier</string>
+   </property>
+  </action>
+  <action name="actionSauvegarder_un_fichier">
+   <property name="text">
+    <string>Sauvegarder un fichier</string>
+   </property>
+  </action>
+  <action name="actionFerm_fich">
+   <property name="text">
+    <string>Fermer le fichier</string>
+   </property>
+  </action>
+  <action name="actionCreer_exercice">
+   <property name="text">
+    <string>Créer un exercice</string>
+   </property>
+  </action>
+  <action name="actionModifier_exercices">
+   <property name="text">
+    <string>Modifier un exercice</string>
+   </property>
+  </action>
+  <action name="actionSupprimer_exercices">
+   <property name="text">
+    <string>Supprimer un exercice</string>
+   </property>
+  </action>
+  <action name="actionTheme_clair">
+   <property name="text">
+    <string>Thème clair</string>
+   </property>
+  </action>
+  <action name="actionTheme_sombre">
+   <property name="text">
+    <string>Thème sombre</string>
+   </property>
+  </action>
+  <action name="actionAide_log">
+   <property name="text">
+    <string>Aide sur le logiciel</string>
+   </property>
+  </action>
+  <action name="action_Apropos">
+   <property name="text">
+    <string>À propos</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

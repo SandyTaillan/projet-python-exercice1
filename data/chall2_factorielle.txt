@@ -1,4 +1,6 @@
+# Ne pas toucher cette ligne jusquà # Enoncé. Sinon, le logiciel ne fonctionnera plus. 
 # Niveau : débutant
+# Réussite : non
 # Enoncé :
 Notions abordées - Récursivité 
 On vous demande d'écrire un programme calculant la factorielle de n. Une factorielle est noté n! cela correspond au produit de tous les termes de n-1.

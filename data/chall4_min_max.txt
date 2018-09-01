@@ -1,4 +1,6 @@
+# Ne pas toucher cette ligne jusquà # Enoncé. Sinon, le logiciel ne fonctionnera plus. 
 # Niveau : débutant
+# Réussite : non
 # Enoncé :
 Challenge # 4 Min or Max : 
 
