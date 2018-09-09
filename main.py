@@ -81,19 +81,6 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
         self.actionAide_log.triggered.connect(self.affichinterfaceaide)
         self.action_Apropos.triggered.connect(self.affichinterfaceapropos)
 
-   #def affichlistfich(self):
-       #"""Fonction permettant d'afficher les notes récupérées par la fonction liredosfich du fichier gestionfiche."""
-
-       #self.listwid_fichier.clear()            # nettoie la liste des fichiers
-       #self.listreussi_fichier.clear()         # nettoie la liste de note
-       #GestFich.liste_de_fiches = self.liredosfich()
-       #self.listwid_fichier.addItems(GestFich.liste_de_fiches)
-       #GestFich.listscore = self.liresucces()
-       #self.listreussi_fichier.addItems(GestFich.listscore)
-       #self. affichselectionfich()
-       #self.compte_tot = self.statfich()
-       #self.progressBar1.setValue(self.compte_tot)
-
     def affichselectionfich(self):
         """Fonction pour afficher les notes selon leur niveau de difficulté et si elles sont réussies ou pas.
 
