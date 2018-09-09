@@ -7,161 +7,239 @@ from glob import glob
 
 
 class GestionFiche(object):
-    """Cette classe regroupe toutes les opérations à effectuer sur les fiches.
-
-    :param self.listfich_nom: dictionnaire regroupant les noms de fiches avec leur contenus
-    :param self.fiches_afaire: contient les 'X' (fichiers pas fait)
-    :param self.fiches_reussi: contient les 'ok' (fichiers réussis)
-    :param self.fiches_selection: liste des noms de fiches correspondant au choix de l'utilisateur pour l'affichage
-
-    :type self.listfich_nom: dict
-    :type self.fiches_afaire: list
-    :type self.fiches_reussi: list
-    :type self.fiches_selection: list
-
-    """
+    """Cette classe regroupe toutes les opérations à effectuer sur les fiches. """
 
     def __init__(self):
+        """Initialisation des variables liées aux fiches.
 
-        self.listfich_nom = {}
-        self.fiches_afaire = []
-        self.fiches_reussi = []
-        self.fiches_selection = []
+        :param self.dict_fich: Contient tous les nons des fiches ainsi que tout leur contenus
+        :type self.dict_fich: dict
 
+        """
+        self.dictnom_fich = {}
+        self.enoncefich = ""
         self.nomfich = ""
         self.chfich = ""
-        self.fiches_x = []
-        self.fiches_ok = []
+        self.compte_tot = 0
         self.choix = ""
+        self.fiches_selection = []
+        self.listscore = []
+        self.compte_a = 0
+        self.compte_b = 0
+        self.contenu = ""
 
     def liredosfich(self):
-        """Lit le nom des fiches dans le dossier data et les place dans un dictionnaire
-            avec indication de réussite ou non.
+        """Lit le nom des fiches dans le dossier data ainsi que leur contenu et les place dans un dictionnaire."""
 
-         liste_de_fiches : Liste avec tous les noms de fiches(nom du fichier)
-         contenu_total :Liste de tout le contenu des fiches
-         liste_de_fiches : list
-         contenu_total: list
-            """
-        # initialisation des variables de la fonction
-        self.fiches_afaire = []
-        self.fiches_reussi = []
-        liste_de_fiches = []
-        contenu_total = []
+        # déclaration des variables
         listfiches = sorted(glob(utl.dosdata + '/*.txt'))
-        self.compte_C = ""
+        liste_de_fiches = []
+        listcontfich = []
 
-        for i in listfiches:
-            liste_de_fiches.append(os.path.splitext(os.path.split(i)[-1])[0])
-            with open(i, 'r') as f:
-                contenu_fiche = f.read().splitlines()
-                contenu_total.append(contenu_fiche)
-                if contenu_fiche[2] == '# Réussite : ok':
-                    self.fiches_reussi.append("ok")
-                elif contenu_fiche[2] == '# Réussite : non':
-                    self.fiches_afaire.append('X')
+        # liste de nom des fichiers que je place dans une liste (listes_de_fiches)
+        for chemin in listfiches:
+            liste_de_fiches.append(os.path.splitext(os.path.split(chemin)[-1])[0])
+
+        # je récupère le contenu des fiches que je mets dans une liste.
+            with open(chemin, 'r') as f:
+                cont_fich = f.read().splitlines()
+                listcontfich.append(cont_fich)
+
+        # Pour travailler, j'aurais besoin de coupler ces deux listes dans un dictionnaire.
         # la ligne suivante me permet de mettre dans un dictionnaire le nom des fiches avec leur contenu respectif
-        self.listfich_nom = {x: y for x, y in zip(liste_de_fiches, contenu_total)}
-        listscore = self.fiches_afaire + self.fiches_reussi
+        self.dictnom_fich = {x: y for x, y in zip(liste_de_fiches, listcontfich)}
 
-        return liste_de_fiches, listscore
+    def statfichglob(self):
+        """Calcul pour déterminer le taux de réussite des fiches."""
 
-    def selectionfich(self):
-        """Sélection des fiches par rapport aux boutons sélectionnés.
+        self.compte_a = 0
+        self.compte_b = 0
 
-        self.choix: variable contenant le choix de l'utilisateur pour l'affichage des noms de fiches
-        self.choix: string
-        """
+        # 1er cas : stat globale
+        for nom in (sorted(self.dictnom_fich.keys())):
+            if self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.compte_a += 1
+            else:
+                self.compte_b += 1
+        if self.compte_a == 0:
+            self.compte_tot = 0
+        else:
+            self.compte_tot = ((float(self.compte_a)) / (self.compte_a + self.compte_b)) * 100
+        return self.compte_tot
 
-        self.fiches_selection = []
-        self.fiches_reussi = []
+    def statfichdeb(self):
+        """Calcul pour déterminer le taux de réussite des fiches."""
 
-        if self.choix == "A":
-            for i in self.listfich_nom.keys():
-                self.fiches_selection.append(i)
-                if self.listfich_nom[i][2] == '# Réussite : ok':
-                    self.fiches_reussi.append("ok")
+        self.compte_a = 0
+        self.compte_b = 0
+
+        for nom in (sorted(self.dictnom_fich.keys())):
+            if self.dictnom_fich[nom][1] == '# Niveau : débutant' and self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.compte_a += 1
+            else:
+                self.compte_b += 1
+        if self.compte_a == 0:
+            self.compte_tot = 0
+        else:
+            self.compte_tot = ((float(self.compte_a)) / (self.compte_a + self.compte_b)) * 100
+        return self.compte_tot
+
+    def statfichinterm(self):
+        """Calcul pour déterminer le taux de réussite des fiches."""
+
+        self.compte_a = 0
+        self.compte_b = 0
+
+        for nom in (sorted(self.dictnom_fich.keys())):
+            if self.dictnom_fich[nom][1] == '# Niveau : intermédiaire' \
+                    and self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.compte_a += 1
+            else:
+                self.compte_b += 1
+        if self.compte_a == 0:
+            self.compte_tot = 0
+        else:
+            self.compte_tot = ((float(self.compte_a)) / (self.compte_a + self.compte_b)) * 100
+        return self.compte_tot
+
+    def statfichexpert(self):
+        """Calcul pour déterminer le taux de réussite des fiches."""
+
+        self.compte_a = 0
+        self.compte_b = 0
+
+        for nom in (sorted(self.dictnom_fich.keys())):
+            if self.dictnom_fich[nom][1] == '# Niveau : expert' and self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.compte_a += 1
+            else:
+                self.compte_b += 1
+        if self.compte_a == 0:
+            self.compte_tot = 0
+        else:
+            self.compte_tot = ((float(self.compte_a)) / (self.compte_a + self.compte_b)) * 100
+        return self.compte_tot
+
+    def fich_cas_a(self):
+
+        for nom in (sorted(self.dictnom_fich.keys())):
+            self.fiches_selection.append(nom)
+            if self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.listscore.append("ok")
+                self.compte_a += 1
+            else:
+                self.listscore.append("X")
+                self.compte_b += 1
+        return self.fiches_selection, self.listscore
+
+    def fich_cas_b(self):
+
+        self.compte_a = 0
+        self.compte_b = 0
+        for nom in (sorted(self.dictnom_fich.keys())):
+            if self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.fiches_selection.append(nom)
+                self.listscore.append('ok')
+        return self.fiches_selection, self.listscore
+
+    def fich_cas_c(self):
+
+        self.compte_a = 0
+        self.compte_b = 0
+        for nom in (sorted(self.dictnom_fich.keys())):
+            if self.dictnom_fich[nom][2] == '# Réussite : non':
+                self.fiches_selection.append(nom)
+                self.listscore.append('X')
+        return self.fiches_selection, self.listscore
+
+    def fich_cas_d(self):
+
+        self.compte_a = 0
+        self.compte_b = 0
+        for nom in (sorted(self.dictnom_fich.keys())):
+            if self.dictnom_fich[nom][1] == '# Niveau : débutant':
+                self.fiches_selection.append(nom)
+                if self.dictnom_fich[nom][2] == '# Réussite : ok':
+                    self.listscore.append("ok")
                 else:
-                    self.fiches_reussi.append("X")
+                    self.listscore.append("X")
+        return self.fiches_selection, self.listscore
 
-        elif self.choix == "B":
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][2] == '# Réussite : ok':
-                    self.fiches_selection.append(i)
-                    self.fiches_reussi.append('ok')
+    def fich_cas_e(self):
 
-        elif self.choix == "C":
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][2] == '# Réussite : non':
-                    self.fiches_selection.append(i)
-                    self.fiches_reussi.append('X')
+        self.compte_a = 0
+        self.compte_b = 0
+        for nom in self.dictnom_fich.keys():
+            if self.dictnom_fich[nom][1] == '# Niveau : débutant' and self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.fiches_selection.append(nom)
+                self.listscore.append('ok')
+        return self.fiches_selection, self.listscore
 
-        elif self.choix == 'D':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : débutant':
-                    self.fiches_selection.append(i)
-                    if self.listfich_nom[i][2] == '# Réussite : ok':
-                        self.fiches_reussi.append("ok")
-                    else:
-                        self.fiches_reussi.append("X")
+    def fich_cas_f(self):
 
-        elif self.choix == 'E':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : débutant' and self.listfich_nom[i][2] == '# Réussite : ok':
-                    self.fiches_selection.append(i)
-                    self.fiches_reussi.append('ok')
+        self.compte_a = 0
+        self.compte_b = 0
+        for nom in self.dictnom_fich.keys():
+                if self.dictnom_fich[nom][1] == '# Niveau : débutant'\
+                        and self.dictnom_fich[nom][2] == '# Réussite : non':
+                    self.fiches_selection.append(nom)
+                    self.listscore.append("X")
+        return self.fiches_selection, self.listscore
 
-        elif self.choix == 'F':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : débutant' and self.listfich_nom[i][2] == '# Réussite : non':
-                    self.fiches_selection.append(i)
-                    self.fiches_reussi.append("X")
+    def fich_cas_g(self):
 
-        elif self.choix == 'G':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : intermédiaire':
-                    self.fiches_selection.append(i)
-                    if self.listfich_nom[i][2] == '# Réussite : ok':
-                        self.fiches_reussi.append("ok")
-                    else:
-                        self.fiches_reussi.append("X")
+        for nom in self.dictnom_fich.keys():
+            if self.dictnom_fich[nom][1] == '# Niveau : intermédiaire':
+                self.fiches_selection.append(nom)
+                if self.dictnom_fich[nom][2] == '# Réussite : ok':
+                    self.listscore.append("ok")
+                else:
+                    self.listscore.append("X")
+        return self.fiches_selection, self.listscore
 
-        elif self.choix == 'H':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : intermédiaire' and \
-                        self.listfich_nom[i][2] == '# Réussite : ok':
-                    self.fiches_selection.append(i)
-                    self.fiches_reussi.append("ok")
+    def fich_cas_h(self):
 
-        elif self.choix == 'I':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : intermédiaire' and \
-                        self.listfich_nom[i][2] == '# Réussite : non':
-                    self.fiches_selection.append(i)
-                    self.fiches_reussi.append("X")
+        for nom in self.dictnom_fich.keys():
+            if self.dictnom_fich[nom][1] == '# Niveau : intermédiaire' and \
+                    self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.fiches_selection.append(nom)
+                self.listscore.append("ok")
+        return self.fiches_selection, self.listscore
 
-        elif self.choix == 'J':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : expert':
-                    self.fiches_selection.append(i)
-                    if self.listfich_nom[i][2] == '# Réussite : ok':
-                        self.fiches_reussi.append("ok")
-                    else:
-                        self.fiches_reussi.append("X")
+    def fich_cas_i(self):
 
-        elif self.choix == 'K':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : expert' and self.listfich_nom[i][2] == '# Réussite : ok':
-                    self.fiches_selection.append(i)
-                    self.fiches_reussi.append("ok")
+        for nom in self.dictnom_fich.keys():
+            if self.dictnom_fich[nom][1] == '# Niveau : intermédiaire' and \
+                    self.dictnom_fich[nom][2] == '# Réussite : non':
+                self.fiches_selection.append(nom)
+                self.listscore.append("X")
+        return self.fiches_selection, self.listscore
 
-        elif self.choix == 'L':
-            for i in self.listfich_nom.keys():
-                if self.listfich_nom[i][1] == '# Niveau : expert' and self.listfich_nom[i][2] == '# Réussite : non':
-                    self.fiches_selection.append(i)
-                    self.fiches_reussi.append("X")
+    def fich_cas_j(self):
 
-        return self.fiches_selection
+        for nom in self.dictnom_fich.keys():
+            if self.dictnom_fich[nom][1] == '# Niveau : expert':
+                self.fiches_selection.append(nom)
+                if self.dictnom_fich[nom][2] == '# Réussite : ok':
+                    self.listscore.append("ok")
+                else:
+                    self.listscore.append("X")
+        return self.fiches_selection, self.listscore
+
+    def fich_cas_k(self):
+
+        for nom in self.dictnom_fich.keys():
+            if self.dictnom_fich[nom][1] == '# Niveau : expert' and self.dictnom_fich[nom][2] == '# Réussite : ok':
+                self.fiches_selection.append(nom)
+                self.listscore.append("ok")
+        return self.fiches_selection, self.listscore
+
+    def fich_cas_l(self):
+
+        for nom in self.dictnom_fich .keys():
+            if self.dictnom_fich[nom][1] == '# Niveau : expert' and self.dictnom_fich[nom][2] == '# Réussite : non':
+                self.fiches_selection.append(nom)
+                self.listscore.append("X")
+        return self.fiches_selection, self.listscore
 
     def lirenoncefich(self):
         """Lire l'énoncé de l'exercice dans le dictionnaire (self.listfich_nom) contenant l'exercice.
@@ -181,7 +259,7 @@ class GestionFiche(object):
         """
 
         self.enoncefich = ""
-        enonce = self.listfich_nom[self.nomfich]
+        enonce = self.dictnom_fich[self.nomfich]
         index1 = enonce.index(utl.textenonce)
         index2 = enonce.index(utl.textsoluce)
         texte = (enonce[(index1 + 1): index2])  # le texte est compris entre énoncé et code en liste
@@ -194,7 +272,7 @@ class GestionFiche(object):
         """Permet de récupérer les 5 premières lignes du contenu de la note."""
 
         contenu5 = ""
-        cont5 = self.listfich_nom[self.nomfich]
+        cont5 = self.dictnom_fich[self.nomfich]
         index1 = (cont5.index(utl.textsoluce) + 1)  # indice du début du code dans la liste
         index2 = index1 + 5
         texte = (cont5[index1: index2])             # le texte est compris entre énoncé et code en list
@@ -205,7 +283,7 @@ class GestionFiche(object):
     def lirecont10lignes(self):
         """Permet de récupérer les 10 premières lignes du contenu de la note."""
 
-        cont10 = self.listfich_nom[self.nomfich]
+        cont10 = self.dictnom_fich[self.nomfich]
         index1 = (cont10.index(utl.textsoluce) + 1)
         index2 = index1 + 10
         texte = (cont10[index1: index2])
@@ -217,7 +295,7 @@ class GestionFiche(object):
     def lireconttout(self):
         """Permet de récupérer tout le contenu de la note."""
 
-        cont = self.listfich_nom[self.nomfich]
+        cont = self.dictnom_fich[self.nomfich]
         index1 = (cont.index(utl.textsoluce) + 1)
         texte = (cont[index1: (len(cont))])
         contenufich = ""
@@ -230,10 +308,10 @@ class GestionFiche(object):
 
         # Je veux récupérer chemin et le nom de la fiche à modifier.
         self.chfich = os.path.join(utl.dosdata, self.nomfich + '.txt')
-        self.listfich_nom[self.nomfich][2] = '# Réussite : non'
+        self.dictnom_fich[self.nomfich][2] = '# Réussite : non'
         contenu = ""
         # puis je veux entrer dans cette fiche pour la modifier
-        for i in self.listfich_nom.get(self.nomfich):
+        for i in self.dictnom_fich.get(self.nomfich):
             # changer le contenu
             contenu = contenu + i + "\n"
         with open(self.chfich, 'w') as f:
@@ -244,10 +322,10 @@ class GestionFiche(object):
 
         # Je veux récupérer chemin et le nom de la fiche à modifier.
         self.chfich = os.path.join(utl.dosdata, self.nomfich + '.txt')
-        self.listfich_nom[self.nomfich][2] = '# Réussite : ok'
+        self.dictnom_fich[self.nomfich][2] = '# Réussite : ok'
         contenu = ""
         # puis je veux entrer dans cette fiche pour la modifier
-        for i in self.listfich_nom.get(self.nomfich):
+        for i in self.dictnom_fich.get(self.nomfich):
             # changer le contenu
             contenu = contenu + i + "\n"
         with open(self.chfich, 'w') as f:
@@ -264,15 +342,3 @@ class GestionFiche(object):
         """Fonction permettant la suppression d'une fiche."""
 
         os.remove(self.chfich)
-
-    def statfich(self):
-        """Calcul pour déterminer le taux de réussite des fiches."""
-
-        # Calcul pour la progressbar
-        compte_A, compte_B = (len(self.fiches_reussi)), (len(self.fiches_afaire))
-        if compte_A == 0:
-            self.compte_C = 0
-        else:
-            self.compte_C = ((float(compte_A)) / (compte_A + compte_B)) * 100
-
-        return self.compte_C

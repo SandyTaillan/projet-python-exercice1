@@ -35,24 +35,24 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
     def __init__(self):
         super(Main, self).__init__()     # permet d'hériter de QMainWindow
 
-        # self.fiches_reussi = []
-        # self.fiches_afaire = []
         self.contenu = ""
-        self.textenonce = '# Enoncé :'
-        self.textsoluce = '# Solution : '
+        self.compte_a = 0
+        self.compte_b = 0
+
         # self.fiches_ok = []
         # self.fiches_x = []
         # self.listfichselect = []
 
         # Déclaration de mes variables
-        self.choix = ""
+
         self.niveaudeb = ""
         self.le_nomfich2 = ""
 
         # Appel des fonctions pour dessiner l'interface
         self.setupUi(self)
         # Appel de la fonction pour afficher les fiches
-        self.affichlistfich()
+        self.liredosfich()
+        self.affichselectionfich()
         self.themesombre()
         self.connectioninterface()
 
@@ -81,17 +81,18 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
         self.actionAide_log.triggered.connect(self.affichinterfaceaide)
         self.action_Apropos.triggered.connect(self.affichinterfaceapropos)
 
-    def affichlistfich(self):
-        """Fonction permettant d'afficher les notes récupérées par la fonction liredosfich du fichier gestionfiche."""
+   #def affichlistfich(self):
+       #"""Fonction permettant d'afficher les notes récupérées par la fonction liredosfich du fichier gestionfiche."""
 
-        self.listwid_fichier.clear()            # nettoie la liste des fichiers
-        self.listreussi_fichier.clear()         # nettoie la liste de note
-        GestFich.liste_de_fiches, GestFich.listscore = self.liredosfich()
-        self.listwid_fichier.addItems(GestFich.liste_de_fiches)
-        self.listreussi_fichier.addItems(GestFich.listscore)
-
-        self.compte_C = self.statfich()
-        self.progressBar1.setValue(self.compte_C)
+       #self.listwid_fichier.clear()            # nettoie la liste des fichiers
+       #self.listreussi_fichier.clear()         # nettoie la liste de note
+       #GestFich.liste_de_fiches = self.liredosfich()
+       #self.listwid_fichier.addItems(GestFich.liste_de_fiches)
+       #GestFich.listscore = self.liresucces()
+       #self.listreussi_fichier.addItems(GestFich.listscore)
+       #self. affichselectionfich()
+       #self.compte_tot = self.statfich()
+       #self.progressBar1.setValue(self.compte_tot)
 
     def affichselectionfich(self):
         """Fonction pour afficher les notes selon leur niveau de difficulté et si elles sont réussies ou pas.
@@ -99,52 +100,77 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
         self.choix: variable permettant de visualiser de différentes façons la liste de fiche
         self.choix: string
         """
+        self.fiches_selection = []
+        self.listscore = []
 
         # cas de figure possible :
 
-        # tous les niveaux et tous les exercices :
+        # tous les niveaux et tous les exercices -> cas a:
         if self.radbout_toutniv.isChecked() and self.btexertout.isChecked():
-            self.choix = "A"
-        # Tous les niveaux et réussis
+            self.fiches_selection, self.listscore = self.fich_cas_a()
+            self.compte_tot = self.statfichglob()
+
+        # Tous les niveaux et réussis -> cas b
         elif self.radbout_toutniv.isChecked() and self.btexerreussi.isChecked():
-            self.choix = "B"
-        # tous les niveaux et à faire
+            self.fiches_selection, self.listscore = self.fich_cas_b()
+            self.compte_tot = self.statfichglob()
+
+        # tous les niveaux et à faire -> cas c
         elif self.radbout_toutniv.isChecked() and self.btexerfaire.isChecked():
-            self.choix = "C"
-        # Débutant et tous les exercices
+            self.fiches_selection, self.listscore = self.fich_cas_c()
+            self.compte_tot = self.statfichglob()
+
+        # Débutant et tous les exercices -> cas d
         elif self.radbout_debut.isChecked() and self.btexertout.isChecked():
-            self.choix = "D"
-        # Débutant et réussis
+            self.fiches_selection, self.listscore = self.fich_cas_d()
+            self.compte_tot = self.statfichdeb()
+
+        # Débutant et réussis -> cas e
         elif self.radbout_debut.isChecked() and self.btexerreussi.isChecked():
-            self.choix = "E"
-        # débutant et A faire
+            self.fiches_selection, self.listscore = self.fich_cas_e()
+            self.compte_tot = self.statfichdeb()
+
+        # débutant et A faire -> cas f
         elif self.radbout_debut.isChecked() and self.btexerfaire.isChecked():
-            self.choix = "F"
-        # intermédiaire et tous les exercices
+            self.fiches_selection, self.listscore = self.fich_cas_f()
+            self.compte_tot = self.statfichdeb()
+
+        # intermédiaire et tous les exercices -> cas g
         elif self.radbout_interme.isChecked() and self.btexertout.isChecked():
-            self.choix = "G"
-        # intermédiaire et réussis
+            self.fiches_selection, self.listscore = self.fich_cas_g()
+            self.compte_tot = self.statfichinterm()
+
+        # intermédiaire et réussis -> cas h
         elif self.radbout_interme.isChecked() and self.btexerreussi.isChecked():
-            self.choix = "H"
-        # Intermédiaire et a faire
+            self.fiches_selection, self.listscore = self.fich_cas_h()
+            self.compte_tot = self.statfichinterm()
+
+        # Intermédiaire et a faire -> cas i
         elif self.radbout_interme.isChecked() and self.btexerfaire.isChecked():
-            self.choix = "I"
-        # Expert et tous les exercices
+            self.fiches_selection, self.listscore = self.fich_cas_i()
+            self.compte_tot = self.statfichinterm()
+
+        # Expert et tous les exercices -> cas j
         elif self.radbout_expert.isChecked() and self.btexertout.isChecked():
-            self.choix = 'J'
-        # Expert et réussis
+            self.fiches_selection, self.listscore = self.fich_cas_j()
+            self.compte_tot = self.statfichexpert()
+
+        # Expert et réussis -> cas k
         elif self.radbout_expert.isChecked() and self.btexerreussi.isChecked():
-            self.choix = "K"
-        # expert et a faire
+            self.fiches_selection, self.listscore = self.fich_cas_k()
+            self.compte_tot = self.statfichexpert()
+
+        # expert et a faire -> cas l
         elif self.radbout_expert.isChecked() and self.btexerfaire.isChecked():
-            self.choix = "L"
+            self.fiches_selection, self.listscore = self.fich_cas_l()
+            self.compte_tot = self.statfichexpert()
 
         self.listwid_fichier.clear()
         self.listreussi_fichier.clear()
-        self.selectionfich()
 
         self.listwid_fichier.addItems(self.fiches_selection)
-        self.listreussi_fichier.addItems(self.fiches_reussi)
+        self.listreussi_fichier.addItems(self.listscore)
+        self.progressBar1.setValue(self.compte_tot)
 
     def affichenoncefich(self):
         """Affichage de l'énoncé de la note sélectionnée
@@ -158,8 +184,8 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
         # pour la version python 3.5, plus besoin du decode
         # écrire simplement :
         # enoncefich = self.lirenoncefich()
-        enoncefich = self.lirenoncefich().decode('UTF-8')
-        self.te_enonce.setText(enoncefich)
+        self.enoncefich = self.lirenoncefich().decode('UTF-8')
+        self.te_enonce.setText(self.enoncefich)
 
     def affich5lignes(self):
         """Affichage de 5 lignes du contenu de la note."""
@@ -188,8 +214,6 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
 
         self.modficherefaire()
         self.affichselectionfich()
-        self.compte_C = self.statfich()
-        self.progressBar1.setValue(self.compte_C)
 
     def affichareussi(self):
         """Modification du'une fiche pour indiquer qu'elle est réussie et mise à jour de la liste
@@ -197,8 +221,6 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
 
         self.modfichereussi()
         self.affichselectionfich()
-        self.compte_C = self.statfich()
-        self.progressBar1.setValue(self.compte_C)
 
     def fermerfichier(self):
         """Action qui fermera définitivement l'application."""
@@ -239,12 +261,13 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
             self.niveaudeb = '# Niveau : expert'
         test_alert = "# Ne pas toucher cette ligne jusquà # Enoncé. Sinon, le logiciel ne fonctionnera plus."
         mes_afaire = "# Réussite : non"
-        self.contenu = test_alert + '\n' + self.niveaudeb + '\n' + mes_afaire + '\n' + self.textenonce + '\n' + self.enoncefich + '\n' + self.textsoluce + '\n' + self.contenufich
+        self.contenu = test_alert + '\n' + self.niveaudeb + '\n' + mes_afaire + '\n' + utl.textenonce + '\n' + self.enoncefich + '\n' + utl.textsoluce + '\n' + self.contenufich
         self.contenu = GestFich.creationfich(self)
         self.le_nomfich2.clear()
         self.le_enonce2.clear()
         self.le_soluce2.clear()
-        self.affichlistfich()
+        self.liredosfich()
+        self.affichselectionfich()
 
     def supprimerfich(self):
         """Fonction faisant le lien avec l'interface et la fonction suppressionfich."""
@@ -257,7 +280,7 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
         self.affichlistfich()
 
     def selectfich(self):
-        """Sélection de la note."""
+        """Récupération du nom et du chemin de la fiche sélectionnée."""
 
         fichselect = self.listwid_fichier.selectedItems()  # type list
         if not fichselect:
@@ -280,11 +303,11 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
         self.enoncefich = self.lirenoncefich().decode('UTF-8')
         self.le_enonce3.setText(self.enoncefich)
         # affichage du niveau de la fiche sélectionnée
-        if self.listfich_nom[self.nomfich][1] == '# Niveau : débutant':
+        if self.dictnom_fich[self.nomfich][1] == '# Niveau : débutant':
             self.radbout_debut2.setChecked(True)
-        elif self.listfich_nom[self.nomfich][1] == '# Niveau : intermédiaire':
+        elif self.dictnom_fich[self.nomfich][1] == '# Niveau : intermédiaire':
             self.radbout_interme2.setChecked(True)
-        else :
+        else:
             self.radbout_expert2.setChecked(True)
 
         # récupération et affichage de la solution de la fiche sélectionnée
@@ -309,13 +332,16 @@ class Main(QtGui.QMainWindow,  Ui_ExercicesPython, GestFich, Ui_fenetresecondair
         if self.radbout_expert2.isChecked():
             self.niveaudeb = '# Niveau : expert'
 
-        self.contenu = test_alert + '\n' + self.niveaudeb + '\n' + mes_afaires + '\n' + self.textenonce + '\n'\
-                       + self.enoncefich + '\n' + self.textsoluce + '\n' + self.contenufich
+        self.contenu = test_alert + '\n' + self.niveaudeb + '\n' + mes_afaires + '\n' + utl.textenonce + '\n'\
+                       + self.enoncefich + '\n' + utl.textsoluce + '\n' + self.contenufich
         self.contenu = GestFich.creationfich(self)
         self.la_nomfich3.clear()
         self.le_enonce3.clear()
         self.le_soluce3.clear()
-        self.affichlistfich()
+        self.te_enonce.clear()
+        self.te_contenu.clear()
+        self.liredosfich()
+        self.affichselectionfich()
 
     def affichinterfaceaide(self):
         """Fonction pour créer une fenêtre d'aide avec un QMessageBox d'information."""
